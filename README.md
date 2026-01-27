@@ -15,21 +15,23 @@ Time and place: 9:15-10:55 T-Th in Hanson Hall 4-190
 
 ### Why should you be interested in this course?
 
-The them of my portion of the course will be on quantiative trade models and the role of imperfect competition. 
+The them of my portion of the course will be on quantitative trade models and the role of imperfect competition. 
 
-One of the key motivations for engaging in trade are the disciplining effects through competition that it has on domestic competitiors. In other words, trade is a two-for in the sense that one gets traditional gains, but "pro-competitive" benefits.
+One of the key motivations for engaging in trade are the disciplining effects through competition that it has on domestic competitors. In other words, trade is a two-for in the sense that one gets traditional gains, but also "pro-competitive" benefits.
 
-To get to this point, I'm going to focus on the Eaton and Kortum (2002) framework. In particular, I'll provide a new presetnation of how this works. This presentation will help us in exploring issues about (i) the efficiency properties of the model and (ii) alternative forms of heterogenaity. A lot of this will connect with current thinking on my work with Simon Mongey. From here I hope to cover papers that focus specifically on pro-competitive issues in trade.  
+To get to this point, I'm going to focus on the Eaton and Kortum (2002) framework. In particular, I'll provide a new presentation of how this works. This presentation will help us in exploring issues about (i) the efficiency properties of the model and (ii) alternative forms of heterogeneity. A lot of this will connect with current thinking on my work with Simon Mongey. From here, I plan to cover papers that focus specifically on pro-competitive issues in trade.  
 
 **Side note.** You'd have to be totally clueless to not realize that questions about trade are some of the most important in economics right now. The US (and the world) is embarking on one of the largest revisions of the world trading system in the past 80 years. This raises many questions of interest to the research community, policy makers, and general public. 
+
+**Side note II.** My site from last year is here [Minnesota Phd Trade 2025](https://github.com/mwaugh0328/minnesota-phd-trade-2025).
 
 ---
 
 ### The plan
 
-* **Monday 3rd February**: Detailed discussion of the [Eaton and Kortum (2002)](./readings/EK2002.pdf)  model. Here are my 2025 [Class notes](./notes/ek-notes.pdf) with detailed walk through as to how the model works. 
+* **Tuesday 3rd February**: Detailed discussion of the [Eaton and Kortum (2002)](./readings/EK2002.pdf)  model. Here are my 2025 [Class notes](./notes/ek-notes.pdf) with detailed walk through as to how the model works. 
 
-* **Wednesday 5th February**: Pareto efficient allocations in the EK framework. Discuss quantiative implementation. 
+* **Thursday 5th February**: Pareto efficient allocations in the EK framework. Discuss quantitative implementation. 
 
 <!--
 * **Monday 10th February**: Continue with optimal tariff in more general settings and quantitative implications.
