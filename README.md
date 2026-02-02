@@ -29,7 +29,7 @@ To get to this point, I'm going to focus on the Eaton and Kortum (2002) framewor
 
 ### The plan
 
-* **Tuesday 3rd February**: Detailed discussion of the [Eaton and Kortum (2002)](./readings/EK2002.pdf)  model. Here are my 2025 [Class notes](./notes/ek-notes.pdf) with detailed walk through as to how the model works. 
+* **Tuesday 3rd February**: Detailed discussion of the [Eaton and Kortum (2002)](./readings/EK2002.pdf)  model. Here are my **new** [Class notes](./notes/ce-ek-notes.pdf) with detailed walk through as to how the model works. 
 
 * **Thursday 5th February**: Pareto efficient allocations in the EK framework. Discuss quantitative implementation. 
 
