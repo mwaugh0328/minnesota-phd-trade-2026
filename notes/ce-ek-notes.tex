@@ -1,0 +1,583 @@
+\documentclass[12pt,pdftex]{article}
+\usepackage[pdftex]{graphicx,color}
+\usepackage{setspace,palatino,multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{titlesec}
+\usepackage{lscape}
+%\usepackage{subfigure}
+\usepackage{threeparttable}
+\usepackage{natbib}
+\bibliographystyle{ecta}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage{rotating}
+\usepackage[listings, most]{tcolorbox}
+\definecolor{nblue}{RGB}{0,0,128}
+\usepackage{afterpage}
+
+\usepackage[pdftex,colorlinks=true, bookmarks=false,
+pdfstartview={XYZ null null 0.85},
+pdftitle={How Restrictive is U.S. Trade Policy?},
+pdfauthor={Michael E. Waugh},
+pdfkeywords={tariffs, trade wars, Minneapolis Fed, trade policy
+Trade Restrictiveness Index, U.S. trade policy, Deadweight loss},
+colorlinks=true,linkcolor=darkgray,citecolor=darkgray,urlcolor=darkgray,
+breaklinks]{hyperref}
+
+
+\newcounter{saveeqni}%
+\newcounter{saveeqn01i}%
+\newcommand{\alpheqni}{\setcounter{saveeqni}{\value{section}}%
+%\setcounter{saveeqn01i}{\value{subsectioni}}%
+\renewcommand{\theequation}
+    {\alph{saveeqni}\mbox{.\arabic{equation}}}}%
+\newcommand{\reseteqni}{\setcounter{equation}{\value{saveeqni}}%
+\renewcommand{\theequation}{\arabic{equation}}}%
+
+\newtheorem{as}{Assumption}
+\newtheorem{reg}{Regularity Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corr}{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prp}{Proposition}
+\newtheorem{rmk}{Remark}
+\newenvironment{prf}{{\bf Proof}}{\hfill { }}
+
+\DeclareMathOperator*{\plim}{plim}
+\DeclareMathOperator*{\umax}{max}
+
+\special{papersize=8.5in,11in}
+\onehalfspacing
+\setlength{\parindent}{0.1em}
+\setlength{\parskip}{.09in}
+\textwidth15.75cm
+\evensidemargin 1.5in
+\oddsidemargin 1.5in
+\topmargin 8.5cm
+\textheight 10in
+\hyphenation{over-lapping}
+
+\tcolorboxenvironment{prp}{%
+boxrule = 0mm, breakable, colframe=white,
+before skip=5pt,after skip=5pt,
+colback=gray!5!white,
+top = 2mm,
+bottom = 2mm%,
+%borderline north={1pt}{1pt}{gray},
+%borderline south={1pt}{1pt}{gray}
+}
+
+\titleformat{\section}{\color{black}\large\bf}{\color{black}{\thesection.}}{.25cm}{}
+\titleformat{\subsection}{\color{black}\normalsize\bf}{\thesubsection.}{.5em}{}
+\titleformat{\subsubsection}{\color{black}\normalsize\bf}{\thesubsubsection.}{.5em}{}
+
+\titlespacing{\section}{0pt}{*1.5}{*.5}
+\titlespacing{\subsection}{0pt}{*1.5}{*.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{*.5}
+
+\def\thesection{\arabic{section}}
+\def\thesubsection{\arabic{section}.\arabic{subsection}}
+\def\thesubsubsection{\arabic{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+
+\renewcommand{\arraystretch}{1.1}
+\usepackage[margin=2cm]{geometry}
+
+
+
+\begin{document}
+
+
+\begin{onehalfspacing}
+
+\section{Eaton and Kortum 2002}
+
+This is easily one of the more important papers written in the last 20 years. There are \emph{multiple} facets of this paper that make a contribution, but let me focus on a trade issue: Reviving the Ricardian model and focus on technology as a determinant of trade flows. Recall, leading into 2000s essentially trade was motivated by variety (either Armington or monopolistic competition models), i.e. ``fruit salad'' models. The concept of trade driven by comparative advantage was dead (more or less).
+
+The big issue with the Ricardian model was that it was hard to connect with the ``real world'' in any substantive way.  For example, \citet{leamer1995international} said ``It's just too simple.'' At this point there was a very important contribution to the Ricardian model which was the \citet{dornbusch1977comparative} model with two countries and a continuum of goods. How'd they solve it? DFS used a natural ordering between the two countries, \( A(z) \) schedule, which says:
+\begin{align}
+        A(z') > A(z) \quad \text{if} \quad z' < z
+\end{align}
+meaning the home country has a greater comparative advantage in the good \( z' \) than \( z \). How to do this for many countries? I could bilaterally order them, but that would be silent regarding the third option of the country left out. \citet{wilson1980general} tried to work this out and it did not go far. The bottom line was that leading into the 2000s Ricardian ideas were not treated as empirically relevant.
+
+\citet{eaton2002technology} was a paradigm shit with multiple innovations. I'll talk through a couple that are relevant (focused on trade) for these notes.\footnote{Two other literatures that it had a big impact on. One is are labor market models of selection (aka \citet{roy1951some} models) with \citet{lagakos2013selection}, \citet{young2013inequality}, and \citet*{hsieh2013allocation} being examples. The other is the quantitative spatial models as in \citet*{ahlfeldt2015economics} and \citet{redding2017quantitative} is the canonical treatment.}
+
+First, was how to handle the ``ordering problem.'' Their idea was to treat the productivity for each individual good as random variables. Then track aggregate trade flows as the probability that a country is a low-cost supplier or not. Note that this is a conceptually important point that should be thought of as separate from the next contribution.
+
+A second contribution: make \underline{very particular assumptions} on the distributions which result in/ preserve a lot of intuition from DFS and the old (two by two) Ricardian model AND provide a tight mapping of aggregate trade flows to primitives through a gravity equation. Basically, trade flows boil down to four things:
+\begin{enumerate}
+    \item \textbf{TFP} | There is be a technology term ($Ts$) which is like TFP in a sense. Countries with better technology trade less, but other countries want to buy more from them.
+
+    \item \textbf{Trade Frictions} | They play the same role as in DFS by generating sets of non-traded goods and reduce overall flows on the intensive and extensive margin.
+
+    \item \textbf{Factor Costs} | This is the key equilibrium object. A country may have high TFP but also high wages. This is a force that allows other countries a chance to trade.
+
+    \item \textbf{A notion of comparative advantage} | How much technology, trade frictions, factor costs impede or facilitate trade depends upon the motives for trade. In the EK this boils down to a parameter $\theta$ which controls how different, at an idiosyncratic level, countries are. This is a second force that allows countries to trade. For example, identical countries at the aggregate level, are different at an idiosyncratic level and hence there is a motive for trade. Interestingly, this parameter turns out to play the exact same role as in the Armington model, i.e. how much I care about a ``fruit salad.''
+\end{enumerate}
+One more thing which I won't go into detail in these notes is the micro-foundations for the distributional assumptions that they make. Their choices were not random, nor purely for convenience. They relate to earlier work by Jonathan and Sam and specifically Sam's job market paper. So if someone just looked at the \citet{eaton2002technology} randomly, it would seem odd or as some people say ``Fr\'{e}chet magic.'' Yes, the way things work out is magical. However, to them, the Fr\'{e}chet assumption was built upon a deliberate thought process over a decade that this was \emph{the} way to think about technology.
+
+\section{The EK Environment}
+
+This section outlines the physical environment of the EK model. I keep it brief since most aspects are known and highlight certain generalizations that I entertain.
+
+\textbf{Commodity space:} Goods are indexed by \( \omega \in [0,1] \). There are $J$ countries. Competitive producers in each country can produce good $\omega$, so each country's ``version'' of $\omega$ is not differentiated | they are perfect substitutes.
+
+\textbf{Technologies and Trade frictions.} Competitive producers in country \( i \), to produce a good \( \omega \), have access to a labor only technology defined by the productivity level $ z_i(\omega)$. Specifically, all producers of good \( \omega \) in country \( i \) have access to the production function:
+\begin{align}
+c_i(\omega) &= z_i(\omega) n_i(\omega), \label{eq:production}
+\end{align}
+where labor, $n_i(\omega)$, is the only factor of production.
+
+Frictions to trade are modeled as iceberg trade costs. I are using the EK notation where the first subscript is the importer, the second sub-script is the exporter. So for a producer to supply good \( \omega \) in market \( n \), from \( i \), they face an iceberg cost to trade:
+\begin{align}
+d_{ni} &\geq 1, \quad d_{ii} = 1 \label{eq:iceberg}
+\end{align}
+and a triangle inequality is assumed to hold (so that I only need to consider direct routes).  When the iceberg assumption is combined with the production structure in (\ref{eq:production}), this means that producers in country $i$ use different technologies to supply their good to each destination. Put another way, the production function to produce in $i$ to supply some quantity to country $n$ of good $\omega$ is
+\begin{align}
+c_{ni}(\omega) &= d_{ni}^{-1} z_i(\omega) n_{ni}(\omega).
+\end{align}
+where now $n_{ni}(\omega)$ is the labor used in the production for delivering goods from $i$ to $n$.
+
+A key idea in the EK model is that good-level technology is characterized in aggregate by a probability distribution. So that a producer of any good in country $i$ receives a draw from a country-specific distribution with CDF $F_i(z_i)$. For now, I simply assume that this distribution is continuous with full support on $(0, \infty)$.  I will revisit the specific Fr\'{e}chet distributional assumption that EK make later.
+
+\textbf{Consumers.} In each country, there is a representative consumer with preferences:
+\begin{align}
+U_n = \int_0^1 \bigg\{ \sum_{j} x_{nj}(\omega) \, u( c_{nj}(\omega)) \bigg \}  d\omega.
+\label{eq:utility}
+\end{align}
+where $x_{nj}(\omega)$ is an indicator function that takes the value one if good $\omega$ is sourced from $j$ and zero for all other destinations. I express preferences in this way to emphasize the discrete choice nature of the problem. The representative consumer views the good $\omega$ from different destinations as perfect substitutes, so one unit of $c_{nj}(\omega)$ delivers the same number of utils as $c_{nj'}(\omega)$ and thus sources the good from only one destination.
+
+The other deviation from the standard presentation of the EK environment is I do not immediately impose CES preferences. Instead, I start with a general additively separable structure and simply assume that $u$ is differentiable and strictly concave.
+
+\textbf{Endowments.} Finally, each country has a labor endowment of mass of $N_i$ and the representative consumer in each country supplies his labor inelastically.
+
+This completes the description of the physical environment.
+
+\subsection{The Consumers Problem}
+
+The representative consumer in country $n$ faces the problem:
+\begin{align}
+U_n = \max\limits_{\{ n_{in}(\omega), \ x_{nj}(\omega), \ c_{nj}(\omega) \}} \quad  \int_0^1 \bigg\{ \sum_{j} x_{nj}(\omega) \, u( c_{nj}(\omega) ) \bigg \} d\omega
+\end{align}
+subject to two constraints:
+\begin{align}
+\int_0^1 \sum\limits_{i \in J} \bigg\{ w_{in}(\omega) \, n_{in}(\omega) \bigg \} d\omega \ \geq& \ \int_0^1 \bigg\{ \sum_{j} x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \bigg \} d\omega \quad \quad [ \ \lambda_n \ ], \\
+\nonumber \\
+N_n \ \geq& \ \int_0^1 \sum\limits_{i \in J} n_{in}(\omega)  d\omega \quad \quad [ \ \upsilon_n \ ].
+\end{align}
+The household chooses where to supply labor $n_{in}(\omega)$, where to buy goods from given by the indicator function $x_{nj}(\omega)$, and then how much of the good to buy $c_{nj}(\omega)$.  The two constraints that the household faces are the constraint that the value of goods demanded must be less than labor income and then that labor supply can not be larger than the endowment.  Associated with these constraints are the two multipliers $\lambda_n$ and $\upsilon_n$. Pedological, I entertain the idea that labor markets could have different wages $w_{in}(\omega)$ depending upon $\omega$ and destination $i$, but as I show below the consumers labor supply choice results in the requirement that wages are equalized across all labor markets.
+
+To solve this problem, there are two standard conditions and a new one regarding the sourcing choice. First, the two standard conditions. The optimal quantity choice satisfies
+\begin{align}
+ u'(c_{nj}(\omega)) = \lambda_n \, p_{nj}(\omega), \label{eq:ce-intensive}
+\end{align}
+where the marginal utility of the goods is set equal to the marginal cost which is how much income it takes as given by $p_{nj}(\omega)$ and then converted into utils at the marginal utility of wealth which is given by the multiplier $\lambda_n$. And note that I cancelled out the $x_{nj}(\omega)$ terms that would be on both side of this equation, thus this condition holds (i) if country $j$ actually is the supplier and (ii) trivially if $j'$ is not the supplier as both sides are zero.
+
+The labor supply choice satisfies
+\begin{align}
+\lambda_n \, w_{in}(\omega) = \upsilon_n, \label{eq:ce-labor-supply}
+\end{align}
+which has the interpretation that the value of supplying labor to any sector, measured in utils which is the wage times the marginal utility of wealth, must equal the shadow value of relaxing the labor endowment constraint. Since the consumer can freely allocate labor across sectors, this condition must hold for all $\omega$ and $i$ destination labor markets. An immediate implication is that wages across different markets are equalized and then the one wage per country is $w_n$. 
+
+The non-standard condition is the sourcing choice. I characterize the sourcing choice or the $x_{nj}(\omega)$s by making good by good comparisons of the Lagrangian as in out \citet{mongey2024discrete} paper. I do this by comparing, for each $\omega$, which source $j$ yields the highest contribution to the Lagrangian:
+\begin{align}
+\bigg[ u(c_{n1}(\omega))  - \lambda_n p_{n1}(\omega) c_{n1}(\omega) \bigg] \quad \mbox{vs.} \quad \bigg[ u(c_{n2}(\omega))  - \lambda_n p_{n2}(\omega) c_{n2}(\omega) \bigg] \quad \mbox{vs.} \quad \ldots \mbox{for all $j$.}
+\end{align}
+This is a comparison across sources which must factor in two distinct issues: (i) how many utils a good from $j$ versus $j'$ delivers, \textbf{and} (ii) the negative effect of that choice on the budget constraint which is the $\lambda_n p_{n1}(\omega) c_{n1}(\omega)$. This comparison leads to the following sourcing choice rule
+\begin{align}\label{eq:ce-choice-rule}
+x_{nj}(\omega) = \begin{cases}
+1 , & \mbox{if} \ \  u(c_{nj}(\omega))  - \lambda_n p_{nj}(\omega) c_{nj}(\omega) \quad \geq \quad \max\limits_{j'} \bigg \{ \ u(c_{nj'}(\omega))  - \lambda_n p_{nj'}(\omega) c_{nj'}(\omega) \ \bigg \} \\
+\\
+0, & \ \mbox{otherwise}
+\end{cases}
+\end{align}
+At this point, this sourcing strategy does not look like the one in \citet{eaton2002technology}. But one can make the argument that it is in the following way. Define the surplus function:
+\begin{align}
+S(p_{nj}(\omega)) \equiv u(c_{nj}(\omega)) - \lambda_n p_{nj}(\omega)  c_{nj}(\omega),
+\end{align}
+where $c$ is chosen optimally given $p_{nj}(\omega)$ in (\ref{eq:ce-intensive}) and thus $S$ is an implicit function of $p_{nj}(\omega)$. Written in this form, the source which delivers the highest surplus determines the sourcing strategy. Then differentiate $S$ with respect to $p_{nj}(\omega)$:
+\begin{align}\label{eq:ce-S-function}
+\frac{dS}{dp_{nj}(\omega)} = \underbrace{\left[u'(c_{nj}(\omega)) - \lambda_n p_{nj}(\omega) \right]}_{ = \small{\mbox{ zero at optimum}}} \ \frac{dc_{nj}(\omega)}{dp_{nj}(\omega)} &- c_{nj}(\omega)\\
+\nonumber 
+\\ \ &= \  -c_{nj}(\omega) < 0
+\end{align}
+Where the final step follows from noting that the bracketed part is the zero at the optimum. Essentially, this is an application of the envelope theorem. At the optimum, the indirect effect of the price on surplus through the induced change in $c$ vanishes. Thus, only the direct effect remains, which is $-c$.
+
+The implication of the result in (\ref{eq:ce-S-function}) is that because $S$ is strictly decreasing, the comparison of
+\begin{align}
+S(p_{nj}(\omega)) \geq S(p_{nj'}(\omega))
+\end{align}
+holds if and only if $p_{nj}(\omega) \leq p_{nj'}(\omega)$. Therefore, the sourcing rule reduces to choosing the source with the lowest  price
+\begin{align}\label{eq:ce-ek-choice-rule}
+x_{nj}(\omega) = \begin{cases}
+1 , & \mbox{if} \ \  \ p_{nj}(\omega)  \quad \leq \quad \min\limits_{j'} \bigg \{ \ p_{nj'}(\omega)\ \bigg \} \\
+\\
+0, & \ \mbox{otherwise}.
+\end{cases}
+\end{align}
+Interestingly, in \citet{eaton2002technology} equation (\ref{eq:ce-ek-choice-rule}) is essentially described as a technology, not an outcome of an optimization problem. \citet{alvarez2007general} is another canonical presentation and they give little discussion as to how and when this is the correct strategy. \citet{wilson1980general} starts here too.
+
+I wrote out the problem this way which is very general, but returns us to the basic EK structure. There are a couple of departures from the basic environment that my presentation allows one to think about. 
+\begin{itemize}
+  \item \textbf{Source-specific utility $u_j(c)$.} If the utility function depends on the source $j$---for example, due to home bias---then the surplus functions $S_j(\Lambda)$ differ across sources. The sourcing rule no longer reduces to comparing prices alone. Adjustments then would need to be made and the adjustment depends on the preference parameters. How would this work? This is a good place to test out your understanding of the model.  
+      
+  \item \textbf{Source-variety-specific utility $u_{\omega j}(c)$.} This would be something like the quality for each $\omega$ \textbf{and} source varies. Then sourcing rule requires comparing $(\omega, j)$-specific surplus functions, and prices alone are not sufficient either. This case is interesting too because then one could think about a distribution of quality (like technology) and work things out. 
+      
+  \item \textbf{Customer Heterogeneity.} This is the space that Mongey and I have explored a lot (though not in the EK specific context) in \citet{mongey2024discrete}, \citet{mongey2025pricing}, and in my work \citet{waugh2023heterogeneous}. There we have preference shocks, now the $c$'s and $\lambda$s are moving around depending upon the persons wealth. In these settings, which good is the low price is not sufficient \textbf{and} how consumers select different goods depends upon their level of wealth. The power of this structure is that it makes clear how to select the optimal choice.    
+\end{itemize}
+
+\subsection{The Firms Problem}
+
+Competitive producers in $ i $, supplying $n$ of good $ \omega $, simply chose labor to maximize profits. Perfect competition erodes those profits and the
+he solution that the prices for each good are
+\begin{align}
+p_{ni}(z) = \frac{w_{i} d_{ni}}{z_{i}(\omega)}.
+\end{align}
+where I have inserted the condition that the wage rate is independent of $\omega$ or destination of the product $n$ from the argument above. This is the price consumers in country $n$ face.
+
+
+\section{Aggregation: CES and Fr\'{e}chet}
+
+\subsection{CES Preferences}
+
+Assume the utility function takes the power form:
+\begin{align} 
+u(c) = c^{\frac{\sigma - 1}{\sigma}}
+\end{align}
+Together with the utility specification in (\ref{eq:utility}), this gives a CES utility function. I dispense with the outer power term, but this is without loss since it is simply a monotonic transformation.
+
+With CES utility, the optimal quantity satisfies:
+\begin{align}
+\frac{\sigma - 1}{\sigma} c_{nj}(\omega)^{-\frac{1}{\sigma}} = \lambda_n p_{nj}(\omega)
+\end{align}
+which gives demand:
+\begin{align}
+c_{nj}(\omega) = \left( \frac{\sigma - 1}{\sigma} \right)^{\sigma} \left( \frac{1}{\lambda_n p_{nj}(\omega)} \right)^{\sigma}
+\end{align}
+The expenditure on good $\omega$ sourced from $j$ is:
+\begin{align}
+p_{nj}(\omega) c_{nj}(\omega) \propto p_{nj}(\omega)^{1-\sigma}
+\end{align}
+Total expenditure in country $n$ is:
+\begin{align}
+E_n = \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega \propto \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega
+\end{align}
+The expenditure share on goods from country $j$ is:
+\begin{align}
+\lambda_{nj} = \frac{\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega}{\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega} \label{eq:imports1}
+\end{align}
+There are two challenges to evaluating this expression. First, the integral in the numerator is conditioned on $j$ being the lowest-cost supplier in country $n$ | that is, on $x_{nj}(\omega) = 1$. This leaves open what is the distribution of prices that actually show up in a given country from a given destination. Second, the denominator involves the distribution of all prices actually consumed in country $n$. What is that distribution? The Fr\'{e}chet distribution provides the structure needed to make progress on both.
+
+\subsection{The Fr\'{e}chet Distribution}
+
+Assume that good-level productivity is drawn from a probability distribution. Specifically, for each good $\omega$, productivity $z_j(\omega)$ in country $j$ is an independent draw from a Fr\'{e}chet (Type II extreme value) distribution with CDF:
+\begin{align}
+F_j(z) = \exp \left \{ -T_j z^{-\theta} \right \} = \text{Prob} \left\{ z_j(\omega) \leq z \right\}
+\end{align}
+where the support is the positive real line, and draws are independent across countries.
+
+This distribution has two parameters which are important to keep in mind:
+\begin{itemize}
+  \item The $T$s are the centering parameters and these control the mean of the distribution with high $T$s meaning that larger $z$s are more likely. This is the sense that it determines a countries TFP or how advanced its technology is. But note, since this is a distribution with full support on the positive real line, this means that even a country that is on average very productive, it will have some bad draws (and very good ones).
+
+\item Then there is the $\theta$ which controls the dispersion of the draws. So the way this is setup is if $\theta$ is \textbf{large}, there is little dispersion (not many bad not good draws). If $\theta$ is \textbf{small}, then there is a lot of dispersion (many bad and many good draws). In this setting, there is a restriction on the size of $\theta$, it can't be below one and it also must be bounded below by $\sigma$ so that the utility is well defined. This is a detail to see in the paper.
+\end{itemize}
+As a preview, the thing that determines things like gains from trade, how much trade responds to changes in trade costs, etc. are fundamentally tied to $\theta$. There is tons of intuition about this in the sense that if countries are very different (low $\theta$), then there is more scope for us to be trading as there are more instances where one country is good, another is bad at producing a particular good. Thus, gains from trade will be large. Intuitively, think to your self how this would work with high $\theta$ (we are very similar).
+
+Other details: Micro foundation, max stability, correlation. Fill this in or ask me later.
+
+\subsection{Next steps\ldots}
+
+Given the parameterized distribution, we need figure out how to compute the integrals in the import demand equation. I'm going to do this is several steps:
+\begin{enumerate}
+  \item Characterize the distribution of prices in a country.
+  \item Characterize the distribution of prices \textbf{conditional} on being a low cost supplier.
+  \item Characterize the import share.
+\end{enumerate}
+
+\subsection{Characterizing the Distribution of Prices}
+
+We now derive the distribution of prices that consumers actually face in destination $n$. For a given good $\omega$, we know:
+\begin{align}
+\text{Prob} \left\{ z_j(\omega) \leq z \right\} = \exp \left\{ -T_j z^{-\theta} \right\}
+\end{align}
+
+From marginal cost pricing, the price offered by source $j$ to destination $n$ is:
+\begin{align}
+p_{nj}(\omega) = \frac{w_j d_{nj}}{z_j(\omega)} \quad \Longleftrightarrow \quad z_j(\omega) = \frac{w_j d_{nj}}{p_{nj}(\omega)}
+\end{align}
+
+Substituting:
+\begin{align}
+\text{Prob} \left\{ \frac{w_j d_{nj}}{p_{nj}(\omega)} \leq \frac{w_j d_{nj}}{p} \right\} = \exp \left\{ -T_j (w_j d_{nj})^{-\theta} p^\theta \right\}
+\end{align}
+
+Since higher $z_j(\omega)$ means lower $p_{nj}(\omega)$, this gives:
+\begin{align}
+\text{Prob} \left\{ p_{nj}(\omega) > p \right\} = \exp \left\{ -T_j (w_j d_{nj})^{-\theta} p^\theta \right\}
+\end{align}
+
+And thus the CDF of prices offered by source $j$:
+\begin{align}
+\text{Prob} \left\{ p_{nj}(\omega) \leq p \right\} = 1 - \exp \left\{ -T_j (w_j d_{nj})^{-\theta} p^\theta \right\}
+\end{align}
+
+The above characterizes prices that \textbf{might} be offered to country $n$ from source $j$. But consumers purchase from the lowest-cost source. The price actually paid for good $\omega$ is:
+\begin{align}
+p_n(\omega) = \min_j \left\{ p_{nj}(\omega) \right\}
+\end{align}
+which comes from (\ref{eq:ce-ek-choice-rule}). So what we want to compute the distribution of $p_n(\omega)$.
+
+\textbf{Claim 1:} Flipping the inequality to make the algebra work:
+\begin{align}
+\text{Prob} \left\{ p_n(\omega) > p \right\} = \text{Prob} \left\{ p_{n1}(\omega) > p, \ p_{n2}(\omega) > p, \ \ldots, \ p_{nJ}(\omega) > p \right\}
+\end{align}
+This follows from the fact that if the minimum exceeds $p$, then all prices must exceed $p$.
+
+\textbf{Claim 2:} By independence of productivity draws across countries:
+\begin{align}
+\text{Prob} \left\{ p_{n1}(\omega) > p, \ldots, p_{nJ}(\omega) > p \right\} = \prod_{j=1}^{J} \text{Prob} \left\{ p_{nj}(\omega) > p \right\}
+\end{align}
+
+Substituting the survival function for each source:
+\begin{align}
+\text{Prob} \left\{ p_n(\omega) > p \right\} &= \prod_{j=1}^{J} \exp \left\{ -T_j (w_j d_{nj})^{-\theta} p^\theta \right\} \\
+&= \exp \left\{ -\sum_{j=1}^{J} T_j (w_j d_{nj})^{-\theta} p^\theta \right\}
+\end{align}
+
+Define:
+\begin{align}
+\Phi_n = \sum_{j} T_j (w_j d_{nj})^{-\theta}
+\end{align}
+
+Then:
+\begin{align}
+\text{Prob} \left\{ p_n(\omega) > p \right\} = \exp \left\{ -\Phi_n p^\theta \right\}
+\end{align}
+
+And the CDF of prices actually paid:
+\begin{align}
+\text{Prob} \left\{ p_n(\omega) \leq p \right\} = 1 - \exp \left\{ -\Phi_n p^\theta \right\}
+\end{align}
+
+This is a Weibull distribution with scale parameter $\Phi_n^{-1/\theta}$ and shape parameter $\theta$. The transformation from productivity (Fr\'{e}chet, with mass toward large values) to prices (Weibull, with mass toward small values) reflects the inverse relationship between productivity and cost.
+
+Now the $\Phi$ object is a \textbf{key} object. In this model, all that matters for trade is how it shapes the prices that a consumer faces. $\Phi$ is a summary statistic for this with a lower $\Phi$ meaning there are the consumer is getting lower prices. With that then notice how this works:
+\begin{itemize}
+    \item Summarizes how technology and factor costs \textit{diffuse} through trade.
+    \item Barriers to trade affect prices and ``weight'' this diffusion. 
+    \item Note: if \( d_{ni} = 1 \) for all pairs, this implies all countries face the same price distribution, satisfying the \textbf{law of one price}.
+    \item An opposite limit is if the country is in autarky. Then only that countries $T$ matters, there is no benefit of being able to import goods from countries produced using their technology.
+\end{itemize}
+One more note. This is actually looking a lot like the inside term of the CES, ideal price index. It turns out that they are related. Can you figure that out?
+
+\subsection{Computing the Probability that a Country is the Low-Cost Supplier}
+
+We now compute the probability that country $j$ is the low-cost supplier to destination $n$. This is the probability that $x_{nj}(\omega) = 1$. Country $n$ buys from source $j$ if:
+\begin{align}
+p_{nj}(\omega) = \min_k \left\{ p_{nk}(\omega) \right\} = \min_k \left\{ \frac{w_k d_{nk}}{z_k(\omega)} \right\}
+\end{align}
+
+Equivalently, $j$ wins if it has the highest cost-adjusted productivity:
+\begin{align}
+\frac{z_j(\omega)}{w_j d_{nj}} = \max_k \left\{ \frac{z_k(\omega)}{w_k d_{nk}} \right\}
+\end{align}
+
+For simplicity, consider two countries and compute the probability that country 2 is the low-cost supplier to country 1. This requires:
+\begin{align}
+\frac{z_2(\omega)}{w_2 d_{12}} \geq \frac{z_1(\omega)}{w_1 d_{11}}
+\end{align}
+
+Rearranging:
+\begin{align}
+z_1(\omega) \leq z_2(\omega) \frac{w_1 d_{11}}{w_2 d_{12}}
+\end{align}
+
+Define $\tilde{w} = \frac{w_1 d_{11}}{w_2 d_{12}}$ to simplify notation. We want:
+\begin{align}
+\text{Prob} \left\{ z_1(\omega) \leq z_2(\omega) \tilde{w} \right\} = \int_{0}^{\infty} \text{Prob} \left\{ z_1(\omega) \leq z_2 \tilde{w} \right\} f_2(z_2) \, dz_2
+\end{align}
+This last equation is important to understand an interpret about what is going on. The first term inside the integral is the CDF of country 1's productivity distribution evaluated at the random variable \( z_2 \tilde{w} \). So this is saying, given $z_2$, what is the total probability that $z_1$ is lower. But, $z_2$ is also a random variable, we add these probabilities over all possible outcomes of $z_2$ weighted by probability $z_2$ occurs, i.e. the pdf $f_2(z_2)$.
+
+Now substituting the Fr\'{e}chet CDF and pdf:
+\begin{align}
+&= \int_{0}^{\infty} \exp \left\{ -T_1 (z_2 \tilde{w})^{-\theta} \right\} \cdot T_2 \theta z_2^{-\theta-1} \exp \left\{ -T_2 z_2^{-\theta} \right\} \, dz_2
+\end{align}
+At this point, one can see where the common \( \theta \) is critical. We can start to pull things together where we have
+\begin{align}
+&= \int_{0}^{\infty} \exp \left\{ -(T_1 \tilde{w}^{-\theta} + T_2) z_2^{-\theta} \right\} T_2 \theta z_2^{-\theta-1} \, dz_2
+\end{align}
+This integral has a clean solution. Use the change of variables $u = (T_1 \tilde{w}^{-\theta} + T_2) z_2^{-\theta}$. The integral evaluates to:
+\begin{align}
+\frac{T_2}{T_1 \tilde{w}^{-\theta} + T_2}
+\end{align}
+Substituting back $\tilde{w} = \frac{w_1 d_{11}}{w_2 d_{12}}$:
+\begin{align}
+\pi_{12} = \text{Prob} \left\{ \text{country 1 buys from 2} \right\} = \frac{T_2 (w_2 d_{12})^{-\theta}}{T_1 (w_1 d_{11})^{-\theta} + T_2 (w_2 d_{12})^{-\theta}}
+\end{align}
+This generalizes to $J$ countries:
+\begin{align}
+\pi_{nj} = \frac{T_j (w_j d_{nj})^{-\theta}}{\sum_{k=1}^{J} T_k (w_k d_{nk})^{-\theta}}
+\end{align}
+Recognizing the denominator as $\Phi_n$:
+\begin{align}
+\pi_{nj} = \frac{T_j (w_j d_{nj})^{-\theta}}{\Phi_n}
+\end{align}
+\textbf{BOOM!} This is a key EK result: the probability that country $j$ is the low-cost supplier to country $n$ takes a CES-like form, with the cost competitiveness term $T_j (w_j d_{nj})^{-\theta}$ in the numerator and the sum of all such terms in the denominator.
+
+\subsection{Computing the Joint Probability of Price and Low-Cost Supplier}
+
+Now we compute the joint probability that the price takes some value and that a particular country is the low-cost supplier. Recall that we want to characterize:
+\begin{align}
+\text{Prob} \left\{ p_1(\omega) \leq p \mid x_{12}(\omega) = 1 \right\} = \frac{\text{Prob} \left\{ p_1(\omega) \leq p, \ p_{12}(\omega) \leq p_{11}(\omega) \right\}}{\text{Prob} \left\{ p_{12}(\omega) \leq p_{11}(\omega) \right\}}
+\end{align}
+We already computed the denominator: $\pi_{12} = \text{Prob}\{p_{12}(\omega) \leq p_{11}(\omega)\}$. Now we need the numerator. The joint probability can be written as:
+\begin{align}
+\text{Prob} \left\{ p_1(\omega) \leq p, \ p_{12}(\omega) \leq p_{11}(\omega) \right\} = \int_0^p \left( \int_{p_{12}}^\infty g_{11}(p_{11}) \, dp_{11} \right) g_{12}(p_{12}) \, dp_{12}
+\end{align}
+where $g_{nj}$ is the pdf of prices offered by source $j$ to destination $n$. The logic: fix a price $p_{12}$ from country 2, compute the probability that country 1's price $p_{11}$ is higher (so country 2 wins), then integrate over all possible $p_{12}$ up to $p$.
+
+The inner integral is a survival function:
+\begin{align}
+\int_{p_{12}}^\infty g_{11}(p_{11}) \, dp_{11} = 1 - G_{11}(p_{12})
+\end{align}
+This is the probability that $p_{11}$ exceeds $p_{12}$---everything above $p_{12}$ in the distribution.
+
+So we have:
+\begin{align}
+\text{Prob} \left\{ p_1(\omega) \leq p, \ p_{12}(\omega) \leq p_{11}(\omega) \right\} = \int_0^p g_{12}(p_{12}) \left( 1 - G_{11}(p_{12}) \right) dp_{12}
+\end{align}
+
+From our earlier derivation, the pdf and survival function of offered prices are:
+\begin{align}
+g_{12}(p_{12}) &= T_2 (w_2 d_{12})^{-\theta} \theta p_{12}^{\theta - 1} \exp \left\{ -T_2 (w_2 d_{12})^{-\theta} p_{12}^{\theta} \right\} \\
+1 - G_{11}(p_{12}) &= \exp \left\{ -T_1 w_1^{-\theta} p_{12}^\theta \right\}
+\end{align}
+where in the second line we use $d_{11} = 1$.
+
+Substituting:
+\begin{align}
+\int_0^p T_2 (w_2 d_{12})^{-\theta} \theta p_{12}^{\theta - 1} \exp \left\{ -T_2 (w_2 d_{12})^{-\theta} p_{12}^{\theta} \right\} \exp \left\{ -T_1 w_1^{-\theta} p_{12}^{\theta} \right\} dp_{12}
+\end{align}
+
+Combining the exponentials:
+\begin{align}
+\int_0^p T_2 (w_2 d_{12})^{-\theta} \theta p_{12}^{\theta - 1} \exp \left\{ -\left( T_1 w_1^{-\theta} + T_2 (w_2 d_{12})^{-\theta} \right) p_{12}^{\theta} \right\} dp_{12}
+\end{align}
+
+The sum inside the exponential is $\Phi_1$. Multiply and divide by $\Phi_1$:
+\begin{align}
+\frac{T_2 (w_2 d_{12})^{-\theta}}{\Phi_1} \int_0^p \Phi_1 \theta p_{12}^{\theta - 1} \exp \left\{ -\Phi_1 p_{12}^{\theta} \right\} dp_{12}
+\end{align}
+
+The term out front is $\pi_{12}$. The integrand is the pdf of the price distribution $G_1(p) = 1 - \exp\{-\Phi_1 p^\theta\}$. So the integral equals $G_1(p)$:
+\begin{align}
+\text{Prob} \left\{ p_1(\omega) \leq p, \ p_{12}(\omega) \leq p_{11}(\omega) \right\} = \pi_{12} \cdot G_1(p)
+\end{align}
+Now we can compute the conditional probability:
+\begin{align}
+\text{Prob} \left\{ p_1(\omega) \leq p \mid x_{12}(\omega) = 1 \right\} = \frac{\pi_{12} \cdot G_1(p)}{\pi_{12}} = G_1(p)
+\end{align}
+This is a crazy property that we just derived. The distribution of prices paid in country 1, conditional on country 2 being the source, is exactly the same as the unconditional distribution of prices paid. The source doesn't matter!
+
+This is a unique property of the Fr\'{e}chet distribution. It says that if we took the histogram of prices purchased from Canada (into the US) and compared it to the histogram of prices from Botswana (into the US), they would be identical. Without the Fr\'{e}chet assumption, this would not hold.
+
+\subsection{Pulling It All Together}
+
+Recall that we wanted to compute the expenditure share from (\ref{eq:imports1}):
+\begin{align}
+\frac{\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega}{\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega}
+\end{align}
+
+Start with the denominator. This is the expected value of $p_n(\omega)^{1-\sigma}$ where $p_n(\omega) = \min_k p_{nk}(\omega)$ is the price actually paid. Since this is an integral over a continuum of varieties with i.i.d. draws, by the law of large numbers it equals the expectation:
+\begin{align}
+\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega = \mathbb{E}\left[ p_n(\omega)^{1-\sigma} \right]
+\end{align}
+
+Now the numerator. This is the integral of $p_{nj}(\omega)^{1-\sigma}$ over varieties where $j$ is the low-cost supplier:
+\begin{align}
+\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega = \mathbb{E}\left[ p_n(\omega)^{1-\sigma} \mid x_{nj}(\omega) = 1 \right] \cdot \text{Prob}\left\{ x_{nj}(\omega) = 1 \right\}
+\end{align}
+
+We showed that the distribution of prices paid, conditional on $j$ being the source, is the same as the unconditional distribution. Therefore:
+\begin{align}
+\mathbb{E}\left[ p_n(\omega)^{1-\sigma} \mid x_{nj}(\omega) = 1 \right] = \mathbb{E}\left[ p_n(\omega)^{1-\sigma} \right]
+\end{align}
+
+And we computed $\text{Prob}\{x_{nj}(\omega) = 1\} = \pi_{nj}$. Putting these together:
+\begin{align}
+\frac{\mathbb{E}\left[ p_n(\omega)^{1-\sigma} \right] \cdot \pi_{nj}}{\mathbb{E}\left[ p_n(\omega)^{1-\sigma} \right]} = \pi_{nj}
+\end{align}
+So the CES expenditure share equals the probability that $j$ is the low-cost supplier:
+\begin{align}
+\pi_{nj} = \frac{T_j (w_j d_{nj})^{-\theta}}{\Phi_n}
+\end{align}
+The fact that this worked out is crazy. It hinges critically on the property we derived earlier: the price distribution that $j$ sells into $n$ is the same as the overall distribution of prices that $n$ faces. Without the Fr\'{e}chet assumption, this cancellation would not occur.
+
+\newpage
+
+
+\bibliography{./bibtex/micro_price_bibtex}
+
+
+
+\appendix
+
+%
+%\section{Briefly: The Competitive Equilibrium}
+%
+%This section briefly sketches out the competitive equilibrium in the EK framework so analogs to the Pareto problem can be compared. 
+%
+%There are several components of the competitive equilibrium in the EK framework. First, there is a demand curve for every good, variety. This is determined from the first order condition of the consumers maximization problem by setting marginal utility to its marginal cost. With the typical CES assumption, one has that
+%\begin{align}
+%c_{i}( \omega) = \frac{ p_{i}(\omega)^{1-\sigma}}{P_i^{1-\sigma}}E_i. \label{eq:ce-demand}
+%\end{align}
+%where $E_i$ is expenditure, $P_i$ is the standard CES price index, and $p_{i}(\omega)$ (the price that is face to acquire good $\omega$) is defined below. This determines quantities. Prices are set by competitive firms so that 
+%\begin{align}
+%p_{ij}(\omega) = \frac{w_j d_{ij}}{ z_j(\omega)}. \label{eq:ce-price}
+%\end{align}
+%Prices equal marginal costs which depend upon wages in country $j$, the iceberg trade costs, and productivity. Then which good is selected, I have that
+%\begin{align}
+%p_{i}(\omega) = \min\limits_{j \in J} \bigg\{ \ p_{ij}(\omega) \ \bigg \}. \label{eq:ce-source}
+%\end{align}
+%This last part is what I will call the sourcing strategy | find the supplier with the lowest cost.\footnote{Interestingly, in \citet{eaton2002technology} equation (\ref{eq:ce-source}) is essentially described as a technology, not an outcome of an optimization problem. \citet{alvarez2007general} is another canonical presentation and they give little discussion as to how and when this is the correct strategy.} And given how prices are set, this entails a trade off of trade frictions, labor costs, and the technological advantages of a country.
+%
+%Treating the $z_j(\omega)$s as random variables drawn from country-specific Type II extreme value (Fr\'{e}chet) distributions gives rise to two key aggregate variables. The first is
+%\begin{align}
+%\Phi_n = \sum\limits_{j \in J} T_j (w_j d_{nj})^{-\theta}
+%\end{align}
+%where $T_j$ is the technology parameter for country $j$ and $\theta$ controls the dispersion of the productivity draws. The parameter $\Phi_n$ plays a special role in that it centers the distribution of prices prevailing in country $n$. This turns out to be connected with the CES price index where it is $\Phi_n \propto P_n^{-\theta}$. Then the probability that the consumer in $n$ sources a good from country $j$ is
+%\begin{align}
+%\pi_{nj} &= \frac{T_j (w_j d_{nj})^{-\theta}}{\Phi_n},
+%\end{align}
+%which also turns out to be the same as the share of aggregate expenditure in $n$ on goods from $j$. 
+%
+%Finally, there is a condition requiring that total spending equals total income: 
+%\begin{align}
+%N_n w_n &= \sum_{j\in J} \pi_{jn} N_j w_j. 
+%\end{align}
+%This implies the balanced trade condition where
+%\begin{align}
+%\underbrace{N_n w_n \sum_{j \neq n} \pi_{nj} }_{\small{\mbox{value of imports}}} &= \underbrace{\sum_{j \neq n} \pi_{jn} N_j w_j}_{\small{\mbox{value of imports}}}. \label{eq:trade-balance} 
+%\end{align}
+%As \citet{alvarez2007general} point out, everything here is a function of the vector of wages $\{w_1, \, w_2, \, \ldots w_J \}$. Thus, a competitive equilibrium is characterized by a  wage vector such that the optimality conditions characterize consumer demand in (\ref{eq:ce-demand}), firm pricing in (\ref{eq:ce-price}), a sourcing strategy in (\ref{eq:ce-source}) and then the trade balance condition in (\ref{eq:trade-balance}). 
+%
+%
+%\section{The Competitive Equilibrium}
+%
+%This section provides a more detailed presentation of the Competitive Equilibrium. Special attention is to present this in a parallel way to the Pareto problem. 
+
+
+
+\end{onehalfspacing}
+
+\end{document}
+
+
+
