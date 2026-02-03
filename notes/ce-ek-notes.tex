@@ -106,7 +106,7 @@ The big issue with the Ricardian model was that it was hard to connect with the 
 \end{align}
 meaning the home country has a greater comparative advantage in the good \( z' \) than \( z \). How to do this for many countries? I could bilaterally order them, but that would be silent regarding the third option of the country left out. \citet{wilson1980general} tried to work this out and it did not go far. The bottom line was that leading into the 2000s Ricardian ideas were not treated as empirically relevant.
 
-\citet{eaton2002technology} was a paradigm shit with multiple innovations. I'll talk through a couple that are relevant (focused on trade) for these notes.\footnote{Two other literatures that it had a big impact on. One is are labor market models of selection (aka \citet{roy1951some} models) with \citet{lagakos2013selection}, \citet{young2013inequality}, and \citet*{hsieh2013allocation} being examples. The other is the quantitative spatial models as in \citet*{ahlfeldt2015economics} and \citet{redding2017quantitative} is the canonical treatment.}
+\citet{eaton2002technology} was a paradigm shift with multiple innovations. I'll talk through a couple that are relevant (focused on trade) for these notes.\footnote{Two other literatures that it had a big impact on. One is are labor market models of selection (aka \citet{roy1951some} models) with \citet{lagakos2013selection}, \citet{young2013inequality}, and \citet*{hsieh2013allocation} being examples. The other is the quantitative spatial models as in \citet*{ahlfeldt2015economics} and \citet{redding2017quantitative} is the canonical treatment.}
 
 First, was how to handle the ``ordering problem.'' Their idea was to treat the productivity for each individual good as random variables. Then track aggregate trade flows as the probability that a country is a low-cost supplier or not. Note that this is a conceptually important point that should be thought of as separate from the next contribution.
 
@@ -183,7 +183,7 @@ The labor supply choice satisfies
 \begin{align}
 \lambda_n \, w_{in}(\omega) = \upsilon_n, \label{eq:ce-labor-supply}
 \end{align}
-which has the interpretation that the value of supplying labor to any sector, measured in utils which is the wage times the marginal utility of wealth, must equal the shadow value of relaxing the labor endowment constraint. Since the consumer can freely allocate labor across sectors, this condition must hold for all $\omega$ and $i$ destination labor markets. An immediate implication is that wages across different markets are equalized and then the one wage per country is $w_n$. 
+which has the interpretation that the value of supplying labor to any sector, measured in utils which is the wage times the marginal utility of wealth, must equal the shadow value of relaxing the labor endowment constraint. Since the consumer can freely allocate labor across sectors, this condition must hold for all $\omega$ and $i$ destination labor markets. An immediate implication is that wages across different markets are equalized and then the one wage per country is $w_n$.
 
 The non-standard condition is the sourcing choice. I characterize the sourcing choice or the $x_{nj}(\omega)$s by making good by good comparisons of the Lagrangian as in out \citet{mongey2024discrete} paper. I do this by comparing, for each $\omega$, which source $j$ yields the highest contribution to the Lagrangian:
 \begin{align}
@@ -204,7 +204,7 @@ S(p_{nj}(\omega)) \equiv u(c_{nj}(\omega)) - \lambda_n p_{nj}(\omega)  c_{nj}(\o
 where $c$ is chosen optimally given $p_{nj}(\omega)$ in (\ref{eq:ce-intensive}) and thus $S$ is an implicit function of $p_{nj}(\omega)$. Written in this form, the source which delivers the highest surplus determines the sourcing strategy. Then differentiate $S$ with respect to $p_{nj}(\omega)$:
 \begin{align}\label{eq:ce-S-function}
 \frac{dS}{dp_{nj}(\omega)} = \underbrace{\left[u'(c_{nj}(\omega)) - \lambda_n p_{nj}(\omega) \right]}_{ = \small{\mbox{ zero at optimum}}} \ \frac{dc_{nj}(\omega)}{dp_{nj}(\omega)} &- c_{nj}(\omega)\\
-\nonumber 
+\nonumber
 \\ \ &= \  -c_{nj}(\omega) < 0
 \end{align}
 Where the final step follows from noting that the bracketed part is the zero at the optimum. Essentially, this is an application of the envelope theorem. At the optimum, the indirect effect of the price on surplus through the induced change in $c$ vanishes. Thus, only the direct effect remains, which is $-c$.
@@ -223,13 +223,13 @@ x_{nj}(\omega) = \begin{cases}
 \end{align}
 Interestingly, in \citet{eaton2002technology} equation (\ref{eq:ce-ek-choice-rule}) is essentially described as a technology, not an outcome of an optimization problem. \citet{alvarez2007general} is another canonical presentation and they give little discussion as to how and when this is the correct strategy. \citet{wilson1980general} starts here too.
 
-I wrote out the problem this way which is very general, but returns us to the basic EK structure. There are a couple of departures from the basic environment that my presentation allows one to think about. 
+I wrote out the problem this way which is very general, but returns us to the basic EK structure. There are a couple of departures from the basic environment that my presentation allows one to think about.
 \begin{itemize}
-  \item \textbf{Source-specific utility $u_j(c)$.} If the utility function depends on the source $j$---for example, due to home bias---then the surplus functions $S_j(\Lambda)$ differ across sources. The sourcing rule no longer reduces to comparing prices alone. Adjustments then would need to be made and the adjustment depends on the preference parameters. How would this work? This is a good place to test out your understanding of the model.  
-      
-  \item \textbf{Source-variety-specific utility $u_{\omega j}(c)$.} This would be something like the quality for each $\omega$ \textbf{and} source varies. Then sourcing rule requires comparing $(\omega, j)$-specific surplus functions, and prices alone are not sufficient either. This case is interesting too because then one could think about a distribution of quality (like technology) and work things out. 
-      
-  \item \textbf{Customer Heterogeneity.} This is the space that Mongey and I have explored a lot (though not in the EK specific context) in \citet{mongey2024discrete}, \citet{mongey2025pricing}, and in my work \citet{waugh2023heterogeneous}. There we have preference shocks, now the $c$'s and $\lambda$s are moving around depending upon the persons wealth. In these settings, which good is the low price is not sufficient \textbf{and} how consumers select different goods depends upon their level of wealth. The power of this structure is that it makes clear how to select the optimal choice.    
+  \item \textbf{Source-specific utility $u_j(c)$.} If the utility function depends on the source $j$---for example, due to home bias---then the surplus functions $S_j(\Lambda)$ differ across sources. The sourcing rule no longer reduces to comparing prices alone. Adjustments then would need to be made and the adjustment depends on the preference parameters. How would this work? This is a good place to test out your understanding of the model.
+
+  \item \textbf{Source-variety-specific utility $u_{\omega j}(c)$.} This would be something like the quality for each $\omega$ \textbf{and} source varies. Then sourcing rule requires comparing $(\omega, j)$-specific surplus functions, and prices alone are not sufficient either. This case is interesting too because then one could think about a distribution of quality (like technology) and work things out.
+
+  \item \textbf{Customer Heterogeneity.} This is the space that Mongey and I have explored a lot in \citet{mongey2024discrete}, \citet{mongey2025pricing}, and in my work \citet{waugh2023heterogeneous}. There we have preference shocks, now the $c$'s and $\lambda$s are moving around depending upon the persons wealth. In these settings, which good is the low price is not sufficient \textbf{and} how consumers select different goods depends upon their level of wealth. The power of structuring the choice of the good this way is that it makes clear how to select the optimal choice when there are complicating features of the model. 
 \end{itemize}
 
 \subsection{The Firms Problem}
@@ -247,7 +247,7 @@ where I have inserted the condition that the wage rate is independent of $\omega
 \subsection{CES Preferences}
 
 Assume the utility function takes the power form:
-\begin{align} 
+\begin{align}
 u(c) = c^{\frac{\sigma - 1}{\sigma}}
 \end{align}
 Together with the utility specification in (\ref{eq:utility}), this gives a CES utility function. I dispense with the outer power term, but this is without loss since it is simply a monotonic transformation.
@@ -270,7 +270,7 @@ E_n = \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega \p
 \end{align}
 The expenditure share on goods from country $j$ is:
 \begin{align}
-\lambda_{nj} = \frac{\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega}{\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega} \label{eq:imports1}
+\frac{\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega}{\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega} \label{eq:imports1}
 \end{align}
 There are two challenges to evaluating this expression. First, the integral in the numerator is conditioned on $j$ being the lowest-cost supplier in country $n$ | that is, on $x_{nj}(\omega) = 1$. This leaves open what is the distribution of prices that actually show up in a given country from a given destination. Second, the denominator involves the distribution of all prices actually consumed in country $n$. What is that distribution? The Fr\'{e}chet distribution provides the structure needed to make progress on both.
 
@@ -371,7 +371,7 @@ This is a Weibull distribution with scale parameter $\Phi_n^{-1/\theta}$ and sha
 Now the $\Phi$ object is a \textbf{key} object. In this model, all that matters for trade is how it shapes the prices that a consumer faces. $\Phi$ is a summary statistic for this with a lower $\Phi$ meaning there are the consumer is getting lower prices. With that then notice how this works:
 \begin{itemize}
     \item Summarizes how technology and factor costs \textit{diffuse} through trade.
-    \item Barriers to trade affect prices and ``weight'' this diffusion. 
+    \item Barriers to trade affect prices and ``weight'' this diffusion.
     \item Note: if \( d_{ni} = 1 \) for all pairs, this implies all countries face the same price distribution, satisfying the \textbf{law of one price}.
     \item An opposite limit is if the country is in autarky. Then only that countries $T$ matters, there is no benefit of being able to import goods from countries produced using their technology.
 \end{itemize}
@@ -532,13 +532,13 @@ The fact that this worked out is crazy. It hinges critically on the property we 
 %
 %\section{Briefly: The Competitive Equilibrium}
 %
-%This section briefly sketches out the competitive equilibrium in the EK framework so analogs to the Pareto problem can be compared. 
+%This section briefly sketches out the competitive equilibrium in the EK framework so analogs to the Pareto problem can be compared.
 %
 %There are several components of the competitive equilibrium in the EK framework. First, there is a demand curve for every good, variety. This is determined from the first order condition of the consumers maximization problem by setting marginal utility to its marginal cost. With the typical CES assumption, one has that
 %\begin{align}
 %c_{i}( \omega) = \frac{ p_{i}(\omega)^{1-\sigma}}{P_i^{1-\sigma}}E_i. \label{eq:ce-demand}
 %\end{align}
-%where $E_i$ is expenditure, $P_i$ is the standard CES price index, and $p_{i}(\omega)$ (the price that is face to acquire good $\omega$) is defined below. This determines quantities. Prices are set by competitive firms so that 
+%where $E_i$ is expenditure, $P_i$ is the standard CES price index, and $p_{i}(\omega)$ (the price that is face to acquire good $\omega$) is defined below. This determines quantities. Prices are set by competitive firms so that
 %\begin{align}
 %p_{ij}(\omega) = \frac{w_j d_{ij}}{ z_j(\omega)}. \label{eq:ce-price}
 %\end{align}
@@ -556,22 +556,22 @@ The fact that this worked out is crazy. It hinges critically on the property we 
 %\begin{align}
 %\pi_{nj} &= \frac{T_j (w_j d_{nj})^{-\theta}}{\Phi_n},
 %\end{align}
-%which also turns out to be the same as the share of aggregate expenditure in $n$ on goods from $j$. 
+%which also turns out to be the same as the share of aggregate expenditure in $n$ on goods from $j$.
 %
-%Finally, there is a condition requiring that total spending equals total income: 
+%Finally, there is a condition requiring that total spending equals total income:
 %\begin{align}
-%N_n w_n &= \sum_{j\in J} \pi_{jn} N_j w_j. 
+%N_n w_n &= \sum_{j\in J} \pi_{jn} N_j w_j.
 %\end{align}
 %This implies the balanced trade condition where
 %\begin{align}
-%\underbrace{N_n w_n \sum_{j \neq n} \pi_{nj} }_{\small{\mbox{value of imports}}} &= \underbrace{\sum_{j \neq n} \pi_{jn} N_j w_j}_{\small{\mbox{value of imports}}}. \label{eq:trade-balance} 
+%\underbrace{N_n w_n \sum_{j \neq n} \pi_{nj} }_{\small{\mbox{value of imports}}} &= \underbrace{\sum_{j \neq n} \pi_{jn} N_j w_j}_{\small{\mbox{value of imports}}}. \label{eq:trade-balance}
 %\end{align}
-%As \citet{alvarez2007general} point out, everything here is a function of the vector of wages $\{w_1, \, w_2, \, \ldots w_J \}$. Thus, a competitive equilibrium is characterized by a  wage vector such that the optimality conditions characterize consumer demand in (\ref{eq:ce-demand}), firm pricing in (\ref{eq:ce-price}), a sourcing strategy in (\ref{eq:ce-source}) and then the trade balance condition in (\ref{eq:trade-balance}). 
+%As \citet{alvarez2007general} point out, everything here is a function of the vector of wages $\{w_1, \, w_2, \, \ldots w_J \}$. Thus, a competitive equilibrium is characterized by a  wage vector such that the optimality conditions characterize consumer demand in (\ref{eq:ce-demand}), firm pricing in (\ref{eq:ce-price}), a sourcing strategy in (\ref{eq:ce-source}) and then the trade balance condition in (\ref{eq:trade-balance}).
 %
 %
 %\section{The Competitive Equilibrium}
 %
-%This section provides a more detailed presentation of the Competitive Equilibrium. Special attention is to present this in a parallel way to the Pareto problem. 
+%This section provides a more detailed presentation of the Competitive Equilibrium. Special attention is to present this in a parallel way to the Pareto problem.
 
 
 
