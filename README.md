@@ -31,7 +31,7 @@ To get to this point, I'm going to focus on the Eaton and Kortum (2002) framewor
 
 * **Tuesday 3rd February**: Detailed discussion of the [Eaton and Kortum (2002)](./readings/EK2002.pdf)  model. Here are my **new** [class notes](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/ce-ek-notes.pdf) with detailed walk through as to how the model works. 
 
-* **Thursday 5th February**: Discuss quantitative implementation. Pareto efficient allocations in the EK framework. 
+* **Thursday 5th February**: Finish up class notes. Connect with gains from trade and ACR.
 
 <!--
 * **Monday 10th February**: Continue with optimal tariff in more general settings and quantitative implications.
