@@ -228,7 +228,7 @@ I wrote out the problem this way which is very general, but returns us to the ba
 
   \item \textbf{Source-variety-specific utility $u_{\omega j}(c)$.} This would be something like the quality for each $\omega$ \textbf{and} source varies. Then sourcing rule requires comparing $(\omega, j)$-specific surplus functions, and prices alone are not sufficient either. This case is interesting too because then one could think about a distribution of quality (like technology) and work things out.
 
-  \item \textbf{Customer Heterogeneity.} This is the space that Mongey and I have explored a lot in \citet{mongey2024discrete}, \citet{mongey2025pricing}, and in my work \citet{waugh2023heterogeneous}. There we have preference shocks, now the $c$'s and $\lambda$s are moving around depending upon the persons wealth. In these settings, which good is the low price is not sufficient \textbf{and} how consumers select different goods depends upon their level of wealth. The power of structuring the choice of the good this way is that it makes clear how to select the optimal choice when there are complicating features of the model. 
+  \item \textbf{Customer Heterogeneity.} This is the space that Mongey and I have explored a lot in \citet{mongey2024discrete}, \citet{mongey2025pricing}, and in my work \citet{waugh2023heterogeneous}. There we have preference shocks, now the $c$'s and $\lambda$s are moving around depending upon the persons wealth. In these settings, which good is the low price is not sufficient \textbf{and} how consumers select different goods depends upon their level of wealth. The power of structuring the choice of the good this way is that it makes clear how to select the optimal choice when there are complicating features of the model.
 \end{itemize}
 
 \subsection{The Firms Problem}
@@ -532,7 +532,7 @@ This implies the balanced trade condition where
 \end{align}
 where what is happening is that on the left hand side we are expanding out the expenditures from each source. But then we can cancel the on both sides of the equation how much $n$ spends on their own goods and ``exports'' to themselves. This is then the balanced trade assumption. As \citet{alvarez2007general} point out, everything here is a function of the vector of wages $\{w_1, \, w_2, \, \ldots w_J \}$. Thus, a competitive equilibrium is characterized by a  wage vector such that the optimality conditions characterize consumer demand in (\ref{eq:ce-intensive}), firm pricing in (\ref{eq:ce-price}), a sourcing strategy in (\ref{eq:ce-ek-choice-rule}). These conditions pluss the CES and Fr\'{e}chet assumption allow us to aggregate and then characterize the trade balance condition in (\ref{eq:trade-balance}).
 
-Note that this structure is similar to what Dioreann talked about in class. And \citet{alvarez2007general} prove properties about the system defined by (\ref{eq:trade-balance}) and suggest an algorithm along the lines that Dioreann described. 
+Note that this structure is similar to what Doireann talked about in class. And \citet{alvarez2007general} prove properties about the system defined by (\ref{eq:trade-balance}) and suggest an algorithm along the lines that Doireann described.
 
 \section{Welfare Gains from Trade}
 
@@ -545,12 +545,12 @@ Recall that the Lagrangian for the consumer problem is:
 And the goal is to evaluate $\frac{d\mathcal{L}}{d \, d_{nj}}$. Note, I'm going to treat the $w_n$ as the numeraire, and thus we don't need to worry about this (I'll come back to this in a bit). The total derivative with respect to $d_{nj}$ is:
 \begin{align}
 \frac{d\mathcal{L}}{d \, d_{nj}} = & \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial p_{nk}(\omega)} \frac{d p_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through prices}} + \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial c_{nk}(\omega)} \frac{d c_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through quantities}} + \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial x_{nk}(\omega)} \frac{d x_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through sourcing}}. \label{eq:ce-total-welfare}
-\end{align} 
-So this says that the gains from trade relate to (i) the direct effect from a change in trade costs \textbf{through prices} and thus I'm allowing for GE forces to feed into here and then  (ii) indirect effects through how quantities change (iii) indirect effects about how sourcing patterns change.  Where we are going with this is the following |  all indirect effects vanish at the optimum and thus only direct effects matter. 
+\end{align}
+So this says that the gains from trade relate to (i) the direct effect from a change in trade costs \textbf{through prices} and thus I'm allowing for GE forces to feed into here and then  (ii) indirect effects through how quantities change (iii) indirect effects about how sourcing patterns change.  Where we are going with this is the following |  all indirect effects vanish at the optimum and thus only direct effects matter.
 
 This result may \textbf{not} be surprising. But as a history of thought and how some economists talk / talked about the new trade models it is surprising. In the EK framework specifically, people would say things like ...``well with an extensive margin on the sourcing decision, there will be ``new gains'' from trade.'' A sympathetic take is that one can kind of see this in the sense that if we were working with an Armington model, the sourcing effect would not be in equation (\ref{eq:ce-total-welfare}). However, this claim is not true (at least to a first-order) and it follows from basic economic theory that the consumer is optimizing over things. And this has nothing to do with the CES and Fr\'{e}chet assumption, in this sense the result I'm about to present is more general than in \citet{arkolakis2012new} paper.
 
-Now let's first walk through the indirect effects are argue that they are zero. 
+Now let's first walk through the indirect effects are argue that they are zero.
 
 \textbf{Indirect Effect Through Quantities.} This is easy, the partial derivative of the Lagrangian with respect to $c_{nk}(\omega)$ is:
 \begin{align}
@@ -574,11 +574,11 @@ For these varieties, the consumer is indifferent between sources. Switching from
 \begin{align}
 \left[ u(c_{nk}(\omega)) - \lambda_{n} p_{nk}(\omega) c_{nk}(\omega) \right] = \left[ u(c_{nk'}(\omega)) -\lambda_{n}  p_{nk'}(\omega) c_{nk'}(\omega) \right].
 \end{align}
-Third, one might worry that there could be many ties that collectively matter. However, With continuous productivity distributions (as under the Fr\'{e}chet assumption), ties occur on a set of measure zero. Therefore:
+Third, one might worry that there could be many ties that collectively matter. However, With continuous productivity distributions (as under the Fr\'{e}chet assumption), ties occur on a set of measure zero.\footnote{There is a third issue that some switches are occurring. However, these are precisely varieties that were near-indifferent. Hence the welfare effect from the discrete reallocation across sources is second order: the mass of switchers is $\mathcal{O}(\Delta)$ and the surplus that they could yield is $\mathcal{O}(\Delta)$ therefore the total affect of these forces are second-order $\mathcal{O}(\Delta^2)$.} Therefore:
 \begin{align}
 \int_0^1 \sum_{i,k} \frac{\partial \mathcal{L}}{\partial x_{ik}(\omega)} \frac{d x_{ik}(\omega)}{d \, d_{nj}} d\omega = 0.
 \end{align}
-Thus, changes in sourcing patterns have no indirect effects on welfare. To summarize this, the only place changes in sourcing \emph{could} matter is if there were a bunch of ties, but with a continuous productivity distributions these are ruled out. To reemphasize, this is the important indirect effect to rule out because it rules out that there are \textbf{no extra gains} from having an active extensive margin for where to source a good. 
+Thus, changes in sourcing patterns have no indirect effects on welfare. This is the important indirect effect to rule out because it rules out that there are \textbf{no extra gains} from having an active extensive margin for where to source a good.
 
 \textbf{Direct Effects Through Prices.} What I've argued is that the only source of gains from trade are direct effects. What remains is only the effect through prices:
 \begin{align}
@@ -601,9 +601,9 @@ What we have then is
 \begin{align}
 \frac{d\mathcal{L}}{d \, d_{nj}}  =& \frac{-\lambda_n}{d_{nj}} \Bigg[ X_{nj}\bigg( 1 + \frac{d \ln w_j}{d \ln d_{nj}} \bigg)  + \sum_{k \neq j} X_{nk} \frac{d \ln w_k}{d \ln d_{nj}}\Bigg] \label{eq:quanity-form-welfare}
 \end{align}
-where $X_{nj} = \int_0^1 x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega$ is total expenditure on goods from $j$ and I inserted the elasticities (which was what allowed me to pull out a $p_{nj}(\omega)$ and construct expenditure. 
+where $X_{nj} = \int_0^1 x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega$ is total expenditure on goods from $j$ and I inserted the elasticities (which was what allowed me to pull out a $p_{nj}(\omega)$ and construct expenditure.
 
-This is nice, but there are a couple of issues to clear up to get things into the proper units. First, this is the change in utility which is not a meaningful number. But we can convert it to the ``dollars'' or what ever numeraire we have by dividing through by the marginal utility of wealth. Just as a recap to understand units here, $\lambda_n$ converts dollars into utils, i.e. how many utils do I get per dollar. Then $1 / \lambda_n$ converts utils into dollars. 
+This is nice, but there are a couple of issues to clear up to get things into the proper units. First, this is the change in utility which is not a meaningful number. But we can convert it to the ``dollars'' or what ever numeraire we have by dividing through by the marginal utility of wealth. Just as a recap to understand units here, $\lambda_n$ converts dollars into utils, i.e. how many utils do I get per dollar. Then $1 / \lambda_n$ converts utils into dollars.
 
 Now one more observation, define $U_n$ as utility for the consumer in $n$ at the current equilibrium. Then $W_n \equiv \frac{1}{\lambda_n} U_n$ has the interpretation as the total number of dollars that are required to deliver $U_n$. We also know that the number of dollars to do so is given by $E_n$ which is total expenditure, thus $W_n = E_n$. So divide both sides by the ratio of trade costs to expenditure gives
 \begin{align}
@@ -613,35 +613,35 @@ and this can be rewritten as:
 \begin{align}
 \frac{d \ln W_n}{d \ln d_{nj}} = -\pi_{nj} - \sum_{k} \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}} \label{eq:welfare-ge}
 \end{align}
-The welfare effect has two components. First there is the effect $\pi_{nj}$ which is the the share spent on goods from $j$ times the direct price reduction from lower trade costs. This is the (partial equilibrium) envelope result: a 1\% decrease in $d_{nj}$ increases real income by $\pi_{nj}$ percent. The welfare cost of lower trade costs is proportional to the expenditure share on the affected trade route. 
+The welfare effect has two components. First there is the effect $\pi_{nj}$ which is the the share spent on goods from $j$ times the direct price reduction from lower trade costs. This is the (partial equilibrium) envelope result: a 1\% decrease in $d_{nj}$ increases real income by $\pi_{nj}$ percent. The welfare cost of lower trade costs is proportional to the expenditure share on the affected trade route.
 
-This result on the first effect, turns out to have a super tight connection to standard consumer theory regarding the measurement of the welfare effects of change in prices. \citet{deaton1989rice} is a key reference with the insight that initial expenditure shares are the sufficient statistics needed to compute the welfare effects of price changes (in this case induced by a reduction in trade costs) to a first order. 
+This result on the first effect, turns out to have a super tight connection to standard consumer theory regarding the measurement of the welfare effects of change in prices. \citet{deaton1989rice} is a key reference with the insight that initial expenditure shares are the sufficient statistics needed to compute the welfare effects of price changes (in this case induced by a reduction in trade costs) to a first order.
 
-Now there is a second GE effect $\sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}}$: a share-weighted sum of how all source prices change through wage adjustments. This has a strong analog to Hulton's theorem and then the Baquee Farhi stuff. I need to expand more on this. 
+Now there is a second GE effect $\sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}}$: a share-weighted sum of how all source prices change through wage adjustments. This has a strong analog to Hulton's theorem and then the Baquee Farhi stuff. I need to expand more on this.
 
-Finally notice that CES or Fr\'{e}chet did not play a role in this argument. This is very general by arguing that only direct effects matter and those are characterized by expenditures and in GE how wages in other destinations respond. 
+Finally notice that CES or Fr\'{e}chet did not play a role in this argument. This is very general by arguing that only direct effects matter and those are characterized by expenditures and in GE how wages in other destinations respond.
 
 \subsection{Hang On. What about \citet{arkolakis2012new}?}
 
 At this point you should be totally confused. \citet{arkolakis2012new} told us one thing | only two sufficient statistics matter for the gains from trade. And I've said something else. How can they both be true. They are and let me show you how.
 
-First, I'm going to derive a similar formula to (\ref{eq:welfare-ge}) but using ACRs formula. So we know that real income is 
+First, I'm going to derive a similar formula to (\ref{eq:welfare-ge}) but using ACRs formula. So we know that real income is
 \begin{align}
 W_n \propto \pi_{nn}^{\frac{-1}{\theta}}
 \end{align}
 and then the percentage change in real income with respect to a change in trade costs is
-\begin{align} 
+\begin{align}
 \frac{d \ln W_n}{d \ln d_{nj}} = \frac{-1}{\theta} \times \frac{d \ln \pi_{nn}}{d \ln d_{nj}} \label{eq:acr-change}
 \end{align}
 This should look normal so far.
 
-Now, here is my argument which has a similar flavor to ACR. Rather than working through assumptions about the distribution on productivity or demand, I will just \textbf{assert} that aggregate trade shares take a ``CES-like'' form. We've already shown that this is the case for EK, but for now, let's just assume we did not see that. 
+Now, here is my argument which has a similar flavor to ACR. Rather than working through assumptions about the distribution on productivity or demand, I will just \textbf{assert} that aggregate trade shares take a ``CES-like'' form. We've already shown that this is the case for EK, but for now, let's just assume we did not see that.
 
-\textbf{Assumption: Expenditure Shares Take a CES form.} Mathematically, this assertion is 
+\textbf{Assumption: Expenditure Shares Take a CES form.} Mathematically, this assertion is
 \begin{align}
-\lambda_{nj} = \frac{(w_{j} d_{nj})^{-\theta}}{\sum\limits_{j' \in J}(w_{j'} d_{nj'})^{-\theta}} 
+\pi_{nj} = \frac{(w_{j} d_{nj})^{-\theta}}{\sum\limits_{j' \in J}(w_{j'} d_{nj'})^{-\theta}}
 \end{align}
-Now lets compute the elasticity of $\frac{d \ln \pi_{nn}}{d \ln d_{nj}}$ under this assumption. Recall with the normalization that $w_n = 1$ we have 
+Now lets compute the elasticity of $\frac{d \ln \pi_{nn}}{d \ln d_{nj}}$ under this assumption. Recall with the normalization that $w_n = 1$ we have
 \begin{align}
 \frac{d \ln \pi_{nn}}{d d_{nj}} = -\frac{d \ln \Phi_n}{d d_{nj}} \label{eq:acr-phi-change}
 \end{align}
@@ -653,21 +653,21 @@ then put in elasticity form by dividing through appropriately and noting that we
 \begin{align}
 \frac{d \ln \Phi_n}{d \ln d_{nj}} = -\theta \pi_{nj} - \theta \sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}}
 \end{align}
-Then insert this into (\ref{eq:acr-phi-change}) and in turn (\ref{eq:acr-change}) 
-\begin{align} 
+Then insert this into (\ref{eq:acr-phi-change}) and in turn (\ref{eq:acr-change})
+\begin{align}
 \frac{d \ln W_n}{d \ln d_{nj}} &= \frac{-1}{\theta} \times \Bigg[ -\theta \pi_{nj} - \theta \sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}} \Bigg] \nonumber  \\
 \nonumber \\
 &= -\pi_{nj} - \sum_{k} \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}} \label{eq:acr-deaton}
 \end{align}
 And we are back to my Deaton / Hulton -like result in (\ref{eq:welfare-ge}).  What is going on here? Here is my take
 \begin{itemize}
-  \item Equation (\ref{eq:welfare-ge}) is very general and says that only direct effects matter and those are characterized by the share of expenditure on the source plus share weighted GE effects. And the argument makes clear \textbf{why} a new margin like switching sources would not matter for the gains from trade (to a first order). CES or Fr\'{e}chet did not play a role in this argument. 
-      
+  \item Equation (\ref{eq:welfare-ge}) is very general and says that only direct effects matter and those are characterized by the share of expenditure on the source plus share weighted GE effects. And the argument makes clear \textbf{why} a new margin like switching sources would not matter for the gains from trade (to a first order). CES or Fr\'{e}chet did not play a role in this argument.
+
   \item A CES-like expenditure demand system (however that is deliver) provides a very tight connection between the share of expenditure on the source and the product of the trade elasticity and the home expenditure share \emph{change}. This is the result (\ref{eq:acr-deaton}).  In the EK specific context, CES and Fr\'{e}chet deliver a CES-like expenditure demand system and this is akin to the notion that these assumptions in the EK model satisfy their Macro restrictions.
-      
+
 \item Notice, that both my equation and ACR handle GE effects. However, one can see how the ACR and the demand system that they impose dramatically simplifies things when GE is considered | all of that stuff is baked into the home trade share.
-  
-  \item An important point is local versus global. The ACR result is a global result, not first order. Whereas equation (\ref{eq:welfare-ge}) is local. This is an under-appreciated part of their result is the globally, different models are the same (near autarky, away etc.), and this is where the functional form assumptions deliver stronger results. 
+
+  \item An important point is local versus global. The ACR result is a global result, not first order. Whereas equation (\ref{eq:welfare-ge}) is local. This is an under-appreciated part of their result is the globally, different models are the same (near autarky, away etc.), and this is where the functional form assumptions deliver stronger results.
 \end{itemize}
 
 
@@ -676,7 +676,7 @@ And we are back to my Deaton / Hulton -like result in (\ref{eq:welfare-ge}).  Wh
 
 
 
-\newpage 
+\newpage
 
 \bibliography{./bibtex/micro_price_bibtex}
 
