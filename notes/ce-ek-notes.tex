@@ -617,7 +617,9 @@ The welfare effect has two components. First there is the effect $\pi_{nj}$ whic
 
 This result on the first effect, turns out to have a super tight connection to standard consumer theory regarding the measurement of the welfare effects of change in prices. \citet{deaton1989rice} is a key reference with the insight that initial expenditure shares are the sufficient statistics needed to compute the welfare effects of price changes (in this case induced by a reduction in trade costs) to a first order.
 
-Now there is a second GE effect $\sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}}$: a share-weighted sum of how all source prices change through wage adjustments. This has a strong analog to Hulton's theorem and then the Baquee Farhi stuff. I need to expand more on this.
+Now there is a second GE effect $\sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}}$: a share-weighted sum of how all source prices change through wage adjustments. This is a ``leakage'' term where that word is sometimes used in public finance. Here leakage is represented by how other countries wages adjust given the shock. Or put another way, how the terms of trade adjust given the shock. Note if this country were small, then this term would be small.
+
+One can show that the GE effects in \textbf{aggregate} net out to zero. In the appendix \ref{apx:ge-redistribution}, I show this. So if we look at welfare of other countries and then sum up these GE effects, globally they are zero and the only ``true'' gains from $d_{nj}$ are given by the share $\pi_{nj}$. Viewed in this light, these GE effects are simply redistributing the gains from trade across countries, and thus country $n$ does not recipe the full benefit of the reduction in $d_{nj}$.
 
 Finally notice that CES or Fr\'{e}chet did not play a role in this argument. This is very general by arguing that only direct effects matter and those are characterized by expenditures and in GE how wages in other destinations respond.
 
@@ -665,16 +667,52 @@ And we are back to my Deaton / Hulton -like result in (\ref{eq:welfare-ge}).  Wh
 
   \item A CES-like expenditure demand system (however that is deliver) provides a very tight connection between the share of expenditure on the source and the product of the trade elasticity and the home expenditure share \emph{change}. This is the result (\ref{eq:acr-deaton}).  In the EK specific context, CES and Fr\'{e}chet deliver a CES-like expenditure demand system and this is akin to the notion that these assumptions in the EK model satisfy their Macro restrictions.
 
-\item Notice, that both my equation and ACR handle GE effects. However, one can see how the ACR and the demand system that they impose dramatically simplifies things when GE is considered | all of that stuff is baked into the home trade share.
+\item Notice, that both my equation and ACR handle GE effects. However, one can see how the ACR and the demand system that they impose dramatically simplifies things when GE is considered | all of that stuff is baked into the home trade share. What this also means, per my discussion about the GE effects, is that the ACR gains \textbf{are not} a pure efficiency gains but also represent redistribution through the terms of trade from one country to another.
 
   \item An important point is local versus global. The ACR result is a global result, not first order. Whereas equation (\ref{eq:welfare-ge}) is local. This is an under-appreciated part of their result is the globally, different models are the same (near autarky, away etc.), and this is where the functional form assumptions deliver stronger results.
 \end{itemize}
 
 
 
+\newpage
 
+\appendix   
 
+\section{GE wage effects are redistribution}\label{apx:ge-redistribution}
 
+I'm now going to make the argument that in general equilibrium, the wage effects are pure redistribution across countries. What one country loses through leakage, the other gains.
+
+I'm going to simplify things so we have two countries. Normalize $w_1 = 1$ as the numeraire. Trade balance requires:
+\begin{align}
+N_1\pi_{12}  = N_2\pi_{21} w_2.
+\end{align}
+From our earlier derivation, the welfare effects of a change in $d_{12}$ in \textbf{country 1} are
+\begin{align}
+\frac{d \ln W_1}{d \ln d_{12}} = -\pi_{12} - \pi_{12} \frac{d \ln w_2}{d \ln d_{12}}.
+\end{align}
+We can do the same thing for \textbf{country 2}
+\begin{align}
+\frac{d \ln W_2}{d \ln d_{12}} = \pi_{21} \frac{d \ln w_2}{d \ln d_{12}}.
+\end{align}
+Country 2 has receives no direct effect (the trade cost $d_{12}$ is the cost of shipping \emph{to} country 1). Its welfare changes only through the GE wage adjustment.
+
+A key thing to resolve is that the formulas are in elasticity form. The leakage argument is in levels, so we need to say the level gain from one place nets off from a level loss from another. 
+
+So country 1's welfare in levels:
+\begin{align}
+\frac{dW_1}{d \ln d_{12}} = W_1 \frac{d \ln W_1}{d \ln d_{12}} =   -N_1\pi_{12} - N_1 \pi_{12} \frac{d \ln w_2}{d \ln d_{12}}
+\end{align}
+where the last term is leakage in levels. Then country 2's welfare in levels:
+\begin{align}
+\frac{dW_2}{d \ln d_{12}} = W_2 \frac{d \ln W_2}{d \ln d_{12}} = N_2 \pi_{21}  w_2 \frac{d \ln w_2}{d \ln d_{12}}
+\end{align}
+which is all leakage. 
+
+\textbf{Here is the important observation.} Use the trade balance condition $N_1\pi_{12}  = N_2 \pi_{21} w_2$ to rewrite country 2's gain
+\begin{align}
+\frac{dW_2}{d \ln d_{12}} =  \underbrace{N_1 \pi_{12} \frac{d \ln w_2}{d \ln d_{12}}}_{= \small\mbox{ -leakage from 1}}
+\end{align}
+These are exactly equal and opposite. What country 1 loses through the GE wage adjustment, country 2 gains. The direct effect $-\pi_{12}$ is the real resource saving from lower trade costs. The GE wage effects merely redistribute between the two countries, summing to zero. 
 
 \newpage
 
