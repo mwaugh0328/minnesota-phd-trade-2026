@@ -99,7 +99,7 @@ bottom = 2mm%,
 
 BEJK (\citet*{bernard2003plants}) is an important paper in the cannon of the EK environment. Essentially, they extend the Ricardian environment in one important direction, i.e., they allow for imperfect competition with variable markups rather then competitive marginal cost pricing of the \citet{eaton2002technology} setting. Now this extension was \textbf{not} just a modeling exercise, but it was done to address some important facts / measurement issues that Bernard and Jensen (and others) had been documenting prior to this paper. 
 
-A second contribution, is that in this paper they are very explicit about how to think of their framework as DGP (data generating process) at the micro-level. In other words, the functional forms they introduced are not just to facilitate a mapping into aggregate data, but provide a simulation based method to examine and study outcomes at the micro-level. This and the EKK paper were key innovators on this and helped set the stage for how Ina and I in \citet{simonovska2014elasticity} thought about these models.
+A second contribution, is that in this paper they are very explicit about how to think of their framework as DGP (data generating process) at the micro-level. In other words, the functional forms they introduced are not just to facilitate aggregation with paper and pencil, but provide a simulation based method to examine and study outcomes at the micro-level. This and the EKK paper were key innovators on this and helped set the stage for how Ina and I in \citet{simonovska2014elasticity} thought about these models.
 
 \section{A Quick Primer on the Measurement of Productivity.}
 
@@ -107,9 +107,9 @@ How do we measure productivity? Turns out even the best economists continually t
 \begin{align}
 y_i(\omega) = z_i(\omega) \, n_i(\omega). \label{eq:production}
 \end{align}
-where we have the $z$ term and then the labor term $n$. Often we say things like $z$ is productivity. But we need to be careful.  For example, in the \citet{melitz2003impact} world we might start to say things like, well exporters are high $z$ firms, therefore exporters are more productive. Or in the \citet{eaton2002technology} world, we say, well we are buying things from (in a likelihood sense) more productive producers. These are fine statements about the  $z$, but this is \textbf{not} what is measured in the data when someone talks about productivity. 
+where we have the $z$ term and then the labor term $n$. Often we say things like $z$ is productivity. For example, in the \citet{melitz2003impact} world we might start to say things like, well exporters are high $z$ firms, therefore exporters are more productive. Or in the \citet{eaton2002technology} world, we say, well we are buying things from (in a likelihood sense) more productive producers. But we need to be careful.  These are fine statements about the  $z$, but this is \textbf{not} what is measured in the data when someone talks about productivity. 
 
-The issue is that those statements above are sometimes referred to as \textbf{physical} productivity. \citet{hsieh2009misallocation} refer to this as \textbf{TFPQ} (total factor productivity measured in quantity units). But we never see physical productivity because we are always measuring things with prices attached to them.\footnote{This observation motivates why IO economist focus on things like concrete or cardboard boxes where the goods are homogenous and we might have some ability to get at physical productivity.}  What we more often see in the data is something like this which I will call value added per worker:
+The issue is that those statements above are sometimes referred to as \textbf{physical} productivity or \citet{hsieh2009misallocation} developed some terminology referring to this as \textbf{TFPQ} (total factor productivity measured in quantity units). But we (alomst) never see physical productivity because we are always measuring things with prices attached to them.\footnote{This observation motivates why IO economist focus on things like concrete or cardboard boxes where the goods are homogenous and we might have some ability to get at physical productivity.}  What we more often see in the data is something like this which I will call value added per worker:
 \begin{align}
 \frac{p_i(\omega) z_i(\omega) \, n_i(\omega)}{n_i(\omega)} = p_i(\omega) z_i(\omega) 
 \end{align}
@@ -117,19 +117,19 @@ or how many dollars of output is produced per unit of labor.\citet{hsieh2009misa
 \begin{align}
 p_i(\omega) z_i(\omega) = \frac{w_i}{z_{i}(\omega)} \times z_i(\omega) = w_i.
 \end{align}
-So even though producers are all heterogenous in their physical productivity, value added per worker is just simply equal to the wage. It's worth thinking about the intuition here, what is happening is that the theory of value (i.e. how $p$s are determined) mean that high $z$ goods are \emph{valued} with low $p$s and in the exact same proportion. Then when we think about how much value added is coming from high $z$ producers, well by the same amount as low $z$ producers. 
+So even though producers are all heterogenous in their physical productivity, value added per worker is the same and equal to the wage. It's worth thinking about the intuition here, what is happening is that the theory of value (i.e. how $p$s are determined) mean that high $z$ goods are \emph{valued} with low $p$s and in the exact same proportion. Then when we think about how much value added is coming from high $z$ producers, well by the same amount as low $z$ producers. 
 
-These kind of observations are really important because how they help us interpret the data. As we will discuss below | there is tons of dispersion in value added per worker across firms / plants. This then begs for some kind of deviation from what we discussed above. These kinds of observations had huge impacts in fields outside of trade. The \citet{hsieh2009misallocation} misallocation paper plays all off of these insights and was a motivation for ``wedges'' to be thing.\footnote{My own work in \citet*{gollin2013agricultural} makes similar observations when thinking about differences in value added per worker across sectors in developing countries, i.e. value added per worker in agriculture is much lower than value added per worker outside of agriculture. This is suggestive of some form of misallocation.}
+These kind of observations are really important because how they help us interpret / think through the data. As we will discuss below, there is a lot of dispersion in value added per worker across firms / plants. This then begs for some kind of deviation from what we discussed above. These kinds of observations had huge impacts in fields outside of trade. The \citet{hsieh2009misallocation} misallocation paper plays all off of these insights and was a motivation for ``wedges'' to be thing. My own work in \citet*{gollin2013agricultural} makes similar observations when thinking about differences in value added per worker across sectors in developing countries, i.e. value added per worker in agriculture is much lower than value added per worker outside of agriculture and this is suggestive of misallocation.
 
 The most obvious deviation is to say that prices do not just reflect marginal costs, but also markups. But its important to note that this is not sufficient. Consider the CES + monopolistic competition world of \citet{melitz2003impact}. And lets measure value added per worker again
 \begin{align}
-p_i(\omega) z_i(\omega) = \frac{\mu \, w_i}{z_{i}(\omega)} \times z_i(\omega) = \mu \, w_i.
+p_i(\omega) z_i(\omega) = \frac{\mu \, w_i}{z_{i}(\omega)} \times z_i(\omega) = \mu \, w_i,
 \end{align}
-where $\mu$ is the markup. This did not solve any issue at all. Value added per worker is still equated across firms. And the constant markup is what drives this. This is a key issue with the CES preference structure (not monopolistic competition). Also viewed through this lens, a lot of very loose claims about the importance of firms in the \citet{melitz2003impact} framework need to be carefully scrutinized because the largest, exporting firms value added per worker is the same as the smallest (near exit threshold) firms.\footnote{One out for \citet{melitz2003impact} is how fixed costs are treated in the data. Even if some of the fixed costs show up in value added per worker, then value added per worker will start to vary across firms.}
+where $\mu$ is the markup. This did not solve any issue at all. Value added per worker is still equated across firms, and the constant markup is behind this. This is a key issue with the CES preference structure and monopolistic competition structure. Also viewed through this lens, a lot of very loose claims about the importance of firms in the \citet{melitz2003impact} framework need to be carefully scrutinized because the largest, exporting firms value added per worker is the same as the smallest (near exit threshold) firms.\footnote{One out for \citet{melitz2003impact} is how fixed costs are treated in the data. Even if some of the fixed costs show up in value added per worker, then value added per worker will start to vary across firms.}
 
 \section{BEJK Facts.}
 
-A key motivation of this paper are a couple of facts about firms / plants in trade.\footnote{Firms and plants are not necessarily the same thing because of multi-establishment firms. It's true most firms are one plant firms, but also the largest firms are likely to multi-establishment.} I'm going to discuss them here. Note the data they have is old | this would be something to turn an AI tool on and update these facts.
+A key motivation of the BEJK paper are a couple of facts about firms / plants in trade.\footnote{Firms and plants are not necessarily the same thing because of multi-establishment firms. It's true most firms are one plant firms, but also the largest firms are likely to multi-establishment.} I'm going to discuss them here. Note the data they have is old | this would be something to turn an AI tool on and update these facts.
 \begin{itemize}
 \item[\textbf{1.}] Exporting behavior is very selected, most firms don't export. The BEJK data is old, but they get something like only 21 percent export anything. Think about this like the extensive margin. Then if they do export, they don't export much relative to their output | 2/3rds only sell less than 10 percent of the output abroad. 
     
@@ -143,13 +143,13 @@ A key motivation of this paper are a couple of facts about firms / plants in tra
 \end{itemize}
 This is the launching point of the paper. They want a model that generates both selection into exporting \textbf{and} measured productivity dispersion. Their solution is to introduce Bertrand competition with firms competing head-to-head on price, markups become variable and depend on the gap between a firm's productivity and its nearest competitor's. This breaks the measured productivity equalization result and delivers the facts above.
 
-\section{The BEJ Environment}
+\section{The BEJK Environment}
 
-It's essentially the same as in \citet{eaton2002technology}, so I keep it brief and highlight certain generalizations that I entertain.
+It's essentially the same as in \citet{eaton2002technology}, so I keep it brief and highlight certain departures that BEJK pursue.
 
 \textbf{Commodity space:} Goods are indexed by \( \omega \in [0,1] \). There are $J$ countries. Many firms in each country can produce good $\omega$, so each country's ``version'' of $\omega$ is not differentiated | they are perfect substitutes. 
 
-\textbf{Technologies and Trade frictions.} In each in country \( i \), there are many \textbf{firms} producing a good \( \omega \) and each firm has a labor only technology defined by the productivity level $ z_{ki}(\omega)$. Notice the $k$ here. The subscript $k$ indicates that this is the $k$th best firm producing good \( \omega \) in country $i$. This is distinct relative to \citet{eaton2002technology} as in that environment all $k$ producers in country $i$ have access to the best technology. Here some firm has a best technology, $k = 1$, second best, $k = 2$, and so forth.  
+\textbf{Technologies and trade frictions.} In each in country \( i \), there are many \textbf{firms} producing a good \( \omega \) and each firm has a labor only technology defined by the productivity level $ z_{ki}(\omega)$. Notice the $k$ here. The subscript $k$ indicates that this is the $k$th best firm producing good \( \omega \) in country $i$. This is distinct relative to \citet{eaton2002technology} as in that environment all $k$ producers in country $i$ have access to the best technology. Here some firm has a best technology, $k = 1$, second best, $k = 2$, and so forth.  
 
 To summarize the $k$th producer has the production function:
 \begin{align}
@@ -164,19 +164,19 @@ As usual, frictions to trade are modeled as iceberg trade costs. Again, I use th
 U_n = \int_0^1 \bigg\{ \sum_{j,k} x_{k,nj}(\omega) \, u( c_{k,nj}(\omega)) \bigg \}  d\omega.
 \label{eq:utility}
 \end{align}
-where $x_{k,nj}(\omega)$ is an indicator function that takes the value one if good $\omega$ is sourced from the $k$th producer in $j$ and zero for all other destinations. Again, I'm emphasizing the view that within $\omega$, all $j$, $k$, goods are viewed as perfect substitutes. Then a key aspect of the problem is to figure out the selection rule $x_{nj,k}(\omega)$. 
+where $x_{k,nj}(\omega)$ is an indicator function that takes the value one if good $\omega$ is sourced from the $k$th producer in $j$ and zero for all other destinations. Again, I'm emphasizing the view that within $\omega$, all $j$, $k$, goods are viewed as perfect substitutes. 
 
-It's worth pausing here to reflect on the perfect substitutes assumption. It is different from a similar model in \citet{atkeson2008pricing}. That model is one of the ``fruit salad'' so the consumer in country $n$ wants to consume in positive amounts all $j$ and $k$. This is distinction is consequential in how markups are determined. \citet{atkeson2007pricing} have a short note on this if you want to see more. I'll say more about this later. 
+It's worth pausing here to reflect on the perfect substitutes assumption. It is different from a similar model in \citet{atkeson2008pricing}. That model is one of the ``fruit salad'' so the consumer in country $n$ wants to consume in positive amounts all $j$ and $k$. This is distinction consequential in how markups are determined. \citet{atkeson2007pricing} have a short note on this if you want to see more. I'll say more about this later. 
 
 \textbf{Endowments.} Finally, each country has a labor endowment of mass of $N_i$ and the representative consumer in each country supplies his labor inelastically.
 
-\textbf{Distribution of Technologies.} This is kind of the wild part. Now rather than specifying the distribution for the best technology, we need to know more. Specifically, we need to specify a joint distribution between the $z_{ki}$ within country $i$ across the $k$ firms. So what is the joint distribution between the best firm $z_{1i}$, $z_{2i}$, \ldots, etc. Turns out that BEJK has a nice distribution for that too, which we will talk about later. 
+\textbf{Distribution of Technologies.} This is kind of the wild part. Now rather than specifying the distribution for the best technology, we need to know more. Specifically, we need to specify a joint distribution between the $z_{ki}$ within country $i$ across the $k$ firms. In other words, what is the joint distribution between the best firm $z_{1i}$, $z_{2i}$, \ldots, etc. Turns out that BEJK has a nice distribution for that too, which we will talk about later. 
 
 \subsection{Firm pricing}
 
 This is everything. Let's walk through this carefully.
 
-\textbf{Step 1.} Because of the perfect substitutes assumption. One firm takes the whole market in $n$ for good $\omega$. This just follows from our choice rule (which we could derive as before):
+\textbf{Step 1.} Because of the perfect substitutes assumption. One firm takes the whole market in $n$ for good $\omega$. This just follows from our choice rule (which we could derive as before in the EK setting):
 \begin{align}
 x_{k,nj}(\omega) = \begin{cases}
 1 , & \mbox{if} \ \  \ p_{k,nj}(\omega)  \quad \leq \quad \min\limits_{k',j'} \bigg \{ \ p_{k',nj'}(\omega)\ \bigg \} \label{eq:cases1} \\ 
@@ -193,11 +193,11 @@ x_{k,nj}(\omega) = \begin{cases}
 0, & \ \mbox{otherwise}.
 \end{cases}
 \end{align}
-We also know because of the ordering on $k$, that $k =1$ will always win (thus all $x_{k,nj}(\omega) = 0, \forall k \neq 1$). And which country is the winner depends on the productivity advantage relative to the wage rate and trade costs in that location. This identifies the winner. 
+We also know because of the ordering on $k$, that $k =1$ will always win (thus all $x_{k,nj}(\omega) = 0, \forall k \neq 1$). And which country is the winner depends on the productivity advantage relative to the wage rate and trade costs in that location. This identifies the winner. Again, this is the same as in EK. 
 
-\textbf{Step 3.} At what prices? Here is the key thing, the winner knows he has market power and can set the price just to the point such that he keeps all other competitors out. That is so the inequality in \label{eq:cases2} binds. However, the winner also knows that he faces a downward sloping demand curve and does not want to choke off demand too much. With a CES demand curve, the winner will not want to charge a markup over the marginal cost over $\frac{\sigma}{\sigma - 1}$.  Call the winner $j(\omega)^*$. Then given these arguments we have that
+\textbf{Step 3.} At what prices? Here is the key thing, the winner knows he has market power and can set the price just to the point such that he keeps all other competitors out. That is so the inequality in \label{eq:cases2} binds. However, the winner also knows that he faces a downward sloping demand curve and does not want to choke off demand too much. With a CES demand curve, the winner will not want to go beyond the monopoly markup of $\frac{\sigma}{\sigma - 1}$.  Call the winner $j(\omega)^*$. Then given these arguments we have that
 \begin{align}
-p_{1,nj^*}(\omega) = \min \Bigg \{ \frac{\sigma}{\sigma - 1} \cdot \frac{w_{j^*} d_{nj^*}}{z_{1j^*}(\omega)} , \  \min\limits_{k',j' \ \neq j^*} \bigg \{ \ \frac{w_{j'} d_{nj'}}{z_{k'j'}(\omega)} \ \bigg \} \Bigg \} 
+p_{1,nj^*}(\omega) = \min \Bigg \{ \frac{\sigma}{\sigma - 1} \cdot \frac{w_{j^*} d_{nj^*}}{z_{1j^*}(\omega)} \ , \  \min\limits_{k',j' \ \neq j^*} \bigg \{ \ \frac{w_{j'} d_{nj'}}{z_{k'j'}(\omega)} \ \bigg \} \Bigg \} 
 \end{align}
 so the next lowest price. Now there is a subtlety here BEJK want to emphasize. They break out this min operator by making the observation that the next lowest price can only be one of two occurrences: (i) the second best domestic competitor in $j^{*}$ or (ii) the $k = 1$ best competitor elsewhere. So they rewrite this as
 \begin{align}
@@ -205,7 +205,7 @@ p_{1,nj^*}(\omega) =  \min \Bigg \{ \frac{\sigma}{\sigma - 1} \cdot \frac{w_{j^*
 \end{align} 
 So to summarize: set the price either at the monopoly price or to keep the next best guy out. And the next best guy are either my own local competitor or international competitors from other sources. 
 
-Let me briefly return to the discussion of \citet{atkeson2008pricing}. Again, their model is one of fruit salad and, in some ways, the pricing argument is simpler. All $k$, $j$ firms are active because we want the variety. Then when these different firms set their price, they simply differentiate their demand curve taking into account the impact that they have on other firms in market $n, \omega$. And the markup depends upon something like the shape of the demand curve and then something about how large each firm is in the market. 
+Let me briefly return to the discussion of \citet{atkeson2008pricing}. Again, their model is one of fruit salad and, in some ways, the pricing argument is simpler. All $k$, $j$ firms are active because we want the variety. Then when these different firms set their price, they simply differentiate their demand curve taking into account the impact that they have on other firms in market $n, \omega$. And the markup depends upon something like the shape of the demand curve and then something about how large each firm is in the market. In this setting, the markup is explicitly determined so that the best firm captures the entire market. 
 
 \subsection{Markups and Measured Productivity}
 
@@ -221,7 +221,7 @@ From our pricing rule, the markup is
 \end{align}
 where $\tilde{z}_{nj^*}(\omega)$ is the ``effective productivity'' of the next-best competitor---either the second-best domestic firm or the best foreign firm, adjusted for trade costs. Specifically,
 \begin{align}
-\tilde{z}_{nj^*}(\omega) = \max \left\{ z_{2j^*}(\omega), \quad \max_{j' \neq j^*} \left\{ z_{1j'}(\omega) \right\} \right\}.
+\tilde{z}_{nj^*}(\omega) = \max \left\{ z_{2j^*}(\omega), \quad \max_{j' \neq j^*} \left\{ z_{1j'}(\omega) \right\} \right\}. \label{eq:markup-gap}
 \end{align}
 The key observation is that the markup depends on the ratio $z_{1j^*}/\tilde{z}_{nj^*}$ or the ``gap'' between the winner and the next-best competitor. When this gap is large, the winner has a substantial cost advantage and can charge a high markup without losing the market. When the gap is small, competition is fierce and the markup is driven toward one. All in all, markups will be varying across $\omega$ because different suppliers have different next-best competitors.
 
@@ -233,38 +233,81 @@ where I've used the normalization that wages are equal to one. Now we see that $
 
 The not obvious question is about how $\text{TFPR}_{nj^*}(\omega)$ would vary with exporting behavior. We know that if a firm is likely to export, it's likely to have a large $z$. This is just natural Ricardian selection that arises in the EK world. But does it have high $\text{TFPR}$? That right now is not obvious to me. The key issue essentially is the following: conditional one being very good, what is the likely-hood that I also have a large gap versus my second best competitor. 
 
+\section{Welfare Effects with Markups}
 
+Before moving onto the distributional assumption and then quantitative results. I want to walk through how markups might matter for the gains from trade. This will also help us understand some surprising results of BEJK. 
 
+Firms set prices as a markup over marginal cost:
+\begin{align}
+p_{nk}(\omega) = \mu_{nk}(\omega; d, w) \cdot \frac{w_k d_{nk}}{z_k(\omega)},
+\end{align}
+where $\mu_{nk}(\omega)$ is a markup that may depend on trade costs, wages, or other equilibrium objects. I'm not going to commit to a specific reason / market structure behind these markups, just that they might depend upon primitives and equilibrium objects. In this sense, what I'm doing is more general than the BEJK environment discussed above. 
+
+\textbf{Budget constraint.} With markups come profits | and we need to account for them somehow. For now, we will just have that profits accruing to households and, thus the representative consumer in country $n$ faces the following budget constraint. 
+\begin{align}
+w_n N_n + \Pi_n  \geq \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega,
+\end{align}
+where $\Pi_n$ denotes total profits from country $n$'s firms.
+
+\subsection{Welfare Effects of a Change in Trade Costs}
+
+Now I'm going to make very similar arguments as in the EK-competitive setting. We start with the Lagrangian and then totally differentiate it. So the consumer's problem gives rise to the Lagrangian:
+\begin{align}
+\mathcal{L} = \int_0^1 \sum_j x_{nj}(\omega) u(c_{nj}(\omega)) \, d\omega + \lambda_n \left\{ w_n N_n + \Pi_n - \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega \right\}.
+\end{align}
+And now we take the total derivative, he welfare effect of a change in $d_{nj}$ decomposes as:
+\begin{align}
+\frac{d\mathcal{L}}{d \, d_{nj}} &= 
+\underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial p_{nk}(\omega)} \frac{d p_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through prices}} \quad  + \quad \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial c_{nk}(\omega)} \frac{d c_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through quantities}}  \\
+\nonumber \\
+\quad & + \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial x_{nk}(\omega)} \frac{d x_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through sourcing}} \quad + \quad \underbrace{\lambda_n \frac{d\Pi_n}{d \, d_{nj}}}_{\text{through profits}}.
+\end{align}
+And then the same exact envelope type argument applies to the ``through quantities'' term and the ``through sourcing'' term and, thus these terms zero out. What is left is
+\begin{align} 
+\frac{d\mathcal{L}}{d \, d_{nj}} &= 
+\underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial p_{nk}(\omega)} \frac{d p_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through prices}} \, + \, \underbrace{\lambda_n \frac{d\Pi_n}{d \, d_{nj}}}_{\text{through profits}} \label{eq:welfare1}
+\end{align}
+or direct effects through prices and profits. 
+
+Now lets open up the price effects term. First, recall that the partial derivative of the Lagrangian with respect to prices is 
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial p_{nk}(\omega)} = -\lambda_n x_{nk}(\omega) c_{nk}(\omega).
+\end{align} 
+The total derivative of the price satisfies:
+\begin{align}
+\frac{d \ln p_{nk}(\omega)}{d \ln d_{nj}} = \frac{d \ln \mu_{nk}(\omega)}{d \ln d_{nj}} + \frac{d \ln w_k}{d \ln d_{nj}} + \mathbf{1}_{k=j},
+\end{align}
+where $\mathbf{1}_{k=j}$ is an indicator equal to one if $k = j$ and zero otherwise.
+
+Then the goal is to insert this into the first term of (\ref{eq:welfare1}). To do so, define the expenditure-weighted average markup elasticity:
+\begin{align}
+\bar{\varepsilon}^{\mu}_{nk,j} \equiv \frac{1}{X_{nk}}\int_0^1 x_{nk}(\omega) p_{nk}(\omega) c_{nk}(\omega) \frac{d \ln \mu_{nk}(\omega)}{d \ln d_{nj}} d\omega,
+\end{align}
+where $X_{nk}$ is total expenditure by country $n$ on goods from country $k$. Then after converting everything to the correct units we have
+\begin{align}
+\frac{d \ln W_n}{d \ln d_{nj}} = -\pi_{nj} - \sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}} - \sum_k \pi_{nk} \bar{\varepsilon}^{\mu}_{nk,j} + \frac{\Pi_n}{E_n}\frac{d \ln \Pi_n}{d \ln d_{nj}}, \label{eq:welfare2}
+\end{align}
+where $\pi_{nk} = X_{nk}/E_n$ is the expenditure share and $E_n = w_n N_n + \Pi_n$ is total expenditure. 
+
+What is going on here? Equation (\ref{eq:welfare2}) has (i) the direct effect which is what would be the only thing present from the perspective of planner (ii) the GE-terms of trade effects. And then new terms (iii) how ``average markups change'' appropriately weighted and then (iv) how profits change. These last two terms are they key elements as to \textbf{why} trade economists would be interested in situations with variable markups. In particular, the third term is what a lot of trade economists would term ``pro-competitive effects'' of trade with the idea that lower trade costs \textbf{could} result in lower markups and, thus larger gains from trade. 
+
+A several points about this\ldots
+\begin{itemize}
+  \item First, notice that in a constant markup world both the elasticity term and the profit term would be zero. So CES + monopolistic competition is no-go for pro-competitive effects.
+
+  \item The elasticity term is a complicated object. It is not obvious that the competitive effects are actually beneficial. They could go the other way. BEJK actually discuss related issues in depth when discussion how several different forces can move to offset things. As one example, very productive exporters may have their advantage reinforced by the reduction trade costs leading to a higher markup. So how do we know if the gap in (\ref{eq:markup-gap}) is increasing or decreasing? 
+      
+      Moreover, what matters is not a simple average but a weighted average. So instances where most markups don't change, but for goods that have high expenditures they do, then this term might be more active. I need to dig into this more but this is very closely related to pass-through and it is a broader issue than trade, connects with monetary transmission etc.
+
+\item The profit term is interesting too, I think often overlooked. Notice that profits are connected to markups, so how the two new terms balance out is delicate. Profits also raise a question about who gets them and they start begging for heterogeneous consumers who have different exposures to labor vs. profit / capital income and how they change. Later we might discuss this as well. 
+\end{itemize}
 
 \newpage 
 
 %\section{Welfare Effects with Markups}
 %
 %
-%\textbf{Pricing.} Firms set prices as a markup over marginal cost:
-%\begin{align}
-%p_{nk}(\omega) = \mu_{nk}(\omega; d, w) \cdot \frac{w_k d_{nk}}{z_k(\omega)},
-%\end{align}
-%where $\mu_{nk}(\omega) \geq 1$ is a markup that may depend on trade costs, wages, or other equilibrium objects.
-%
-%\textbf{Budget constraint.} With profits accruing to domestic households, the representative consumer in country $n$ faces:
-%\begin{align}
-%w_n N_n + \Pi_n \geq \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega,
-%\end{align}
-%where $\Pi_n$ denotes total profits from country $n$'s firms.
-%
-%\section{Welfare Effects of a Change in Trade Costs}
-%
-%\textbf{The Lagrangian.} The consumer's problem gives rise to the Lagrangian:
-%\begin{align}
-%\mathcal{L} = \int_0^1 \sum_j x_{nj}(\omega) u(c_{nj}(\omega)) \, d\omega + \lambda_n \left\{ w_n N_n + \Pi_n - \int_0^1 \sum_j x_{nj}(\omega) p_{nj}(\omega) c_{nj}(\omega) \, d\omega \right\}.
-%\end{align}
-%
-%\textbf{Total derivative.} The welfare effect of a change in $d_{nj}$ decomposes as:
-%\begin{align}
-%\frac{d\mathcal{L}}{d \, d_{nj}} &= \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial p_{nk}(\omega)} \frac{d p_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through prices}} + \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial c_{nk}(\omega)} \frac{d c_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through quantities}} \notag \\
-%&\quad + \underbrace{\int_0^1 \sum_k \frac{\partial \mathcal{L}}{\partial x_{nk}(\omega)} \frac{d x_{nk}(\omega)}{d \, d_{nj}} d\omega}_{\text{through sourcing}} + \underbrace{\lambda_n \frac{d\Pi_n}{d \, d_{nj}}}_{\text{through profits}}.
-%\end{align}
+%\textbf{Pricing.} 
 %
 %\section{Why Indirect Effects Vanish}
 %
@@ -277,25 +320,7 @@ The not obvious question is about how $\text{TFPR}_{nj^*}(\omega)$ would vary wi
 %
 %Importantly, this argument is unchanged by the presence of markups. The consumer still compares prices and sources from the cheapest supplier; the envelope theorem still applies.
 %
-%\section{Direct Effects: Prices and Profits}
-%
-%\textbf{Price effects.} The partial derivative of the Lagrangian with respect to prices is $\frac{\partial \mathcal{L}}{\partial p_{nk}(\omega)} = -\lambda_n x_{nk}(\omega) c_{nk}(\omega)$. The price satisfies:
-%\begin{align}
-%\frac{d \ln p_{nk}(\omega)}{d \ln d_{nj}} = \frac{d \ln \mu_{nk}(\omega)}{d \ln d_{nj}} + \frac{d \ln w_k}{d \ln d_{nj}} + \mathbf{1}_{k=j},
-%\end{align}
-%where $\mathbf{1}_{k=j}$ is an indicator equal to one if $k = j$ and zero otherwise.
-%
-%\textbf{Aggregating.} Define the expenditure-weighted average markup elasticity:
-%\begin{align}
-%\bar{\varepsilon}^{\mu}_{nk,j} \equiv \frac{1}{X_{nk}}\int_0^1 x_{nk}(\omega) p_{nk}(\omega) c_{nk}(\omega) \frac{d \ln \mu_{nk}(\omega)}{d \ln d_{nj}} d\omega,
-%\end{align}
-%where $X_{nk}$ is total expenditure by country $n$ on goods from country $k$.
-%
-%\textbf{Welfare formula.} Converting to log welfare $W_n$ (utils converted to expenditure units):
-%\begin{align}
-%\frac{d \ln W_n}{d \ln d_{nj}} = -\pi_{nj} - \sum_k \pi_{nk} \frac{d \ln w_k}{d \ln d_{nj}} - \sum_k \pi_{nk} \bar{\varepsilon}^{\mu}_{nk,j} + \frac{\Pi_n}{E_n}\frac{d \ln \Pi_n}{d \ln d_{nj}},
-%\end{align}
-%where $\pi_{nk} = X_{nk}/E_n$ is the expenditure share and $E_n = w_n N_n + \Pi_n$ is total expenditure.
+
 %
 %\section{Global Redistribution with Free Entry}
 %
@@ -385,4 +410,4 @@ The not obvious question is about how $\text{TFPR}_{nj^*}(\omega)$ would vary wi
 
 \end{onehalfspacing}
 
-\end{document}
+\end{document} 
