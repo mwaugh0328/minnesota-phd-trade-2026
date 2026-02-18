@@ -176,7 +176,7 @@ function sim_trade_pattern_bejk(S, d, θ, σ; Ngoods = 100000, code = 1)
 
     inv_Ngoods = 1 / Ngoods
 
-    markup = σ / (σ - one(σ))
+    monopoly_markup = σ / (σ - one(σ))
 
     
 
@@ -215,6 +215,7 @@ function sim_trade_pattern_bejk(S, d, θ, σ; Ngoods = 100000, code = 1)
     sum_price = zeros(Ncntry)
 
     rec_low_price = Array{Float64}(undef, Ncntry, Ngoods)
+    bertand_markup = similar(rec_low_price)
 
     # rec_cost = Array{Float64}(undef, Ncntry, Ngoods)
 
@@ -269,13 +270,15 @@ function sim_trade_pattern_bejk(S, d, θ, σ; Ngoods = 100000, code = 1)
 
             end
 
-            price_charged = min(min(d[im, min_ex] * p2const[min_ex, gd], low2_cost), markup * low_cost)
+            price_charged = min(min(d[im, min_ex] * p2const[min_ex, gd], low2_cost), monopoly_markup * low_cost)
 
             m[im, min_ex] += (price_charged )^(one(σ) - σ)
 
             sum_price[im] += (price_charged )^(one(σ) - σ)
 
             rec_low_price[im, gd] = price_charged
+
+            bertand_markup[im, gd] = price_charged / low_cost
 
             # rec_cost[im, gd] = low_cost
 
@@ -298,7 +301,7 @@ function sim_trade_pattern_bejk(S, d, θ, σ; Ngoods = 100000, code = 1)
 
     end
 
-    return m, rec_low_price
+    return m, rec_low_price, bertand_markup
 
 end
 

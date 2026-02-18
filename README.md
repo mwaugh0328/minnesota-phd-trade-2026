@@ -33,7 +33,7 @@ To get to this point, I'm going to focus on the Eaton and Kortum (2002) framewor
 
 * **Thursday 5th February**: Finish up class notes. Connect with gains from trade and ACR.
 
-* **Tuesday 17 February**: Detailed discussion of the [BEJK (2003)](./readings/BEJK.pdf)  model. Here are my **new** [BEJK class notes](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/bejk-notes.pdf). 
+* **Tuesday 17 February**: Detailed discussion of the [BEJK (2003)](./readings/BEJK.pdf)  model. Here are my [BEJK class notes](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/bejk-notes.pdf). 
 
 * **Thursday 19 February**: Discuss welfare with variable markups. Detailed discussion of simmulation/ computation of BEJK / EK framework. Here are my notes on the [simulation of EK/BEJK models](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/ek-simulation.pdf). Code to simmulate this stuff is in the [code](code/) folder
 

@@ -104,11 +104,11 @@ One of the overlooked properties of the EK framework (\citet{eaton2002technology
 
 Let's focus on a specific example. The \citet{bernard2003plants} paper wants to match and understand the micro-behavior (firms, productivity dispersion, markups) of the economy in response to globalization-like shocks.  How do markups respond to a reduction in trade costs and for whom? Who expands or not or exits? These questions are what they designed the paper / model to speak to. 
 
-To answer these kinds of question one needs to be able to generate a dataset from the model that mimics the kind of data set that one might see in a Census RDC.\footnote{This is something one hears Ellen talking about | the idea that one should treat model output just like data. I think its a very important concept to understand.} This is where the explicit distributional assumptions of the EK framework help a lot. First, the distributional assumption provides away to aggregate and connect the model with aggregate outcomes like trade flows (this is what \citet{eaton2002technology} emphasized). Second, they provide a way to construct outcomes at the micro-level through simulation. I'm going to focus on this latter point in the notes below.
+To answer these kinds of question one needs to be able to generate a dataset from the model that mimics the kind of data set that one might see in a Census RDC.\footnote{This is something one hears Ellen talking about | the idea that one should treat model output just like data. I think it's a very important concept to understand. This concept drove everything in my paper on \citet{simonovska2014elasticity} in estimating the trade elasticity by treating the output from the model just as in the data. } This is where the explicit distributional assumptions of the EK framework help a lot. First, the distributional assumption provides away to aggregate and connect the model with aggregate outcomes like trade flows (this is what \citet{eaton2002technology} emphasized). Second, they provide a way to construct outcomes at the micro-level through simulation. I'm going to focus on this latter point in the notes below.
 
 \section{Simulation | The Basics}
 
-A key idea is in simulation based approaches is what is called the \textbf{Inverse CDF Method.} This method essentially allows us to generate random variables from any distribution as long as we can compute the inverse CDF of the distribution. Then once we have random variables from distribution that we want, we can use \textbf{Monte Carlo Integration} to approximate integrals numerical that may be difficult / impossible to compute analytically. This section briefly discusses these two approaches. 
+A key idea in simulation-based approaches is what is called the \textbf{Inverse CDF Method.} This method essentially allows us to generate random variables from any distribution as long as we can compute the inverse CDF of the distribution. Then once we have random variables from distribution that we want, we can use \textbf{Monte Carlo Integration} to approximate integrals numerically that may be difficult / impossible to compute analytically. This section briefly discusses these two approaches. 
 
 \subsection{The Inverse CDF Method}
 
@@ -160,13 +160,13 @@ In the EK context, this is why simulation methods are the way to go. Recall that
 
 \section{Example: EK 2002}
 
-Let's put this approach to use. First, lets focus on the competitive EK environment. 
+Let's put this approach to use. First, let's focus on the competitive EK environment. 
 
 Recall that what we want to compute is the expenditure share:
 \begin{align}
 \pi_{nj} = \frac{\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega}{\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega}, \label{eq:expenditure-share}
 \end{align}
-or what share of expenditure does the consume in $n$ purchase from $j$. And then the pieces that go into this are the $x$ function which is
+or what share of expenditure does the consumer in $n$ purchase from $j$. And then the pieces that go into this are the $x$ function which is
 \begin{align}
 x_{nj}(\omega) = \begin{cases}
 1 , & \mbox{if} \ \  \ p_{nj}(\omega)  \quad \leq \quad \min\limits_{j'} \bigg \{ \ p_{nj'}(\omega)\ \bigg \} \\
@@ -210,7 +210,7 @@ where notice how the function $x_{nj}(\bar z(\omega) )$ depends upon the entire 
 \frac{1}{N^d}\sum_{\omega=1}^{N^d} \sum_{k} \bigg \{ x_{nk}(\bar z(\omega) ) \cdot  p_{nk}(z_k( \omega ) )^{1-\sigma} \bigg \}, \label{eq:demand-est2}.
 \end{align}
 
-\item Then the expenditure share can by combining the two so
+\item Then the expenditure share is obtained by combining the two so
 \begin{align}
 \pi_{nj} \approx \frac{\sum_{\omega=1}^{N^d} x_{nj}(\bar z(\omega) ) \cdot  p_{nj}(z_j( \omega ) )^{1-\sigma} }{\sum_{\omega=1}^{N^d} \sum_{k} \bigg \{ x_{nk}(\bar z(\omega) ) \cdot  p_{nk}(z_k( \omega ) )^{1-\sigma} \bigg \} }.
 \end{align}
@@ -222,8 +222,20 @@ In some ways this is very straightforward. In the back of these notes I have the
 
 \begin{figure}[t]
 \centering
-\caption{Simulated Trade Flows\\}\label{fig:simmulated-trade-flows}
-\includegraphics[height=0.45\textheight]{./figures/trade_model_fit.png}
+\caption{Data and Model}\label{fig:simmulated-trade-flows}
+\begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \caption{Trade Data vs. Exact EK}
+    \includegraphics[width=\textwidth]{./figures/data_model_exact_fit.png}
+    \label{fig:trade-flows-exact}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \caption{Exact EK vs. Monte Carlo EK}
+    \includegraphics[width=\textwidth]{./figures/mc_vs_exact_model_fit.png}
+    \label{fig:trade-flows-monte-carlo}
+\end{subfigure}
 \end{figure}
 
 Yes. And fast. 
@@ -232,7 +244,7 @@ The figure in Figure \ref{fig:simmulated-trade-flows}, plots model versus the da
 
 \section{Connection with Gravity and Prices}
 
-There is one more detail that makes simulation in the EK framework very continent. Stepping back when one looks through the equations above, one might say well I need to know a lot to do all of this. I need to know trade costs, wages, the technology parameters $T$s, in addition to a $\theta$ and a $\sigma$. It turns out that one can infer a lot of these objects from trade data and do so without even having to compute and equilibrium. 
+There is one more detail that makes simulation in the EK framework very convenient. Stepping back when one looks through the equations above, one might say well I need to know a lot to do all of this. I need to know trade costs, wages, the technology parameters $T$s, in addition to a $\theta$ and a $\sigma$. It turns out that one can infer a lot of these objects from trade data and do so without computing an equilibrium. 
 
 So the way this is done is to estimate the parameters for the country-specific productivity distributions and trade costs (scaled by $\theta$) from bilateral trade-flow data. Relative expenditure shares in the EK model take the form
 \begin{align}
@@ -272,7 +284,7 @@ Now consider the Bertrand competition environment of \citet{bernard2003plants}. 
 
 Recall that in the BEJK setup, each country $j$ draws \textit{two} independent productivity levels for each good $\omega$. The first draw $z_j^{(1)}(\omega)$ is the most efficient producer in country $j$; the second draw $z_j^{(2)}(\omega)$ is the second-most efficient. 
 
-Sampling the first draw works exactly as in the EK case: apply the inverse CDF method to the Fr\'{e}chet distribution parameterized by $\tilde{S}_j$ (which would come from the gravity regression above). And I'll work in terms of marginal costs $c_j(\omega) = w_j / z_j(\omega)$, the first draw is
+Sampling the first draw works exactly as in the EK case: apply the inverse CDF method to the Fr\'{e}chet distribution parameterized by $\tilde{S}_j$ (which would come from the gravity regression above). And I'll work in terms of marginal costs $c_j(\omega) = w_j / z_j(\omega)$ rather than productivity. Note these are not the costs for the good to be deliver, just the domestic cost in $j$.  The first draw is
 \begin{align}
 c_j^{(1)}(\omega) = \left( \frac{-\log U_{j\omega}^{(1)}}{\tilde{S}_j} \right)^{1/\theta}, \quad U_{j\omega}^{(1)} \sim \text{Uniform}(0,1). \label{eq:bejk-first-draw}
 \end{align}
@@ -301,7 +313,7 @@ In BEJK, the low-cost supplier has market power and the price it charges is cons
 
 The price actually charged is the minimum of these three:
 \begin{align}
-p_{nj^*}(\omega) = \min \left\{ c^{(2)}_{nj^*}(\omega), \quad \bigg \{ c^{(1)}_{nj}(\omega), \forall j \neq j^* \bigg \}, \quad \frac{\sigma}{\sigma-1} \cdot c^{(1)}_{nj^*}(\omega) \right\}. \label{eq:bejk-price}
+p_{nj^*}(\omega) = \min \left\{ c^{(2)}_{nj^*}(\omega), \quad \min\limits_{\forall j \neq j^*}\bigg \{ \ c^{(1)}_{nj}(\omega) \ \bigg \}, \quad \frac{\sigma}{\sigma-1} \cdot c^{(1)}_{nj^*}(\omega) \right\}. \label{eq:bejk-price}
 \end{align}
  Which of the three binds determines the markup that the low-cost supplier earns on good $\omega$ in market $n$.
  

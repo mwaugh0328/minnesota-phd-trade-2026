@@ -42,6 +42,46 @@ end
 ##########################################################################
 ##########################################################################
 
+
+function eaton_kortum(trade_parameters)
+    # multiple dispatch version 
+    # this allows me to pass the trade_parameters structure and it will work
+
+    return eaton_kortum(trade_parameters.S, trade_parameters.d,  trade_parameters.θ)
+
+end
+
+function eaton_kortum(S, d, θ)
+    # constructs pattern of trade for eaton and kortum model
+    # I belive the Ss are in levels not logs
+
+    Ncntry = size(d)[1]
+    
+    πshares = Array{eltype(d)}(undef, size(d))
+    
+    Φ = similar(S)
+
+    for importer = 1:Ncntry
+
+        for exporter = 1:Ncntry
+
+            πshares[importer, exporter] = S[exporter] * ( d[importer, exporter] )^(-θ)
+            # equation (8)-like 
+
+        end
+
+        Φ[importer] = sum( πshares[importer, :])
+        # equation (7)
+
+        πshares[importer, : ] .= πshares[importer, : ] / Φ[importer]
+        # complete equation (8)
+
+    end
+
+    return πshares, Φ
+
+end
+
 function eaton_kortum(W, d, T, θ)
     # constructs pattern of trade for eaton and kortum model
 
