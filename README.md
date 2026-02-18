@@ -35,7 +35,7 @@ To get to this point, I'm going to focus on the Eaton and Kortum (2002) framewor
 
 * **Tuesday 17 February**: Detailed discussion of the [BEJK (2003)](./readings/BEJK.pdf)  model. Here are my **new** [BEJK class notes](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/bejk-notes.pdf). 
 
-* **Thursday 19 February**: Detailed discussion of simmulation/ computation of BEJK / EK framework.
+* **Thursday 19 February**: Detailed discussion of simmulation/ computation of BEJK / EK framework. Here are my notes on this aspect of these models [Simulation of EK/BEJK](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/ek-simulation.pdf).
 
 
 
