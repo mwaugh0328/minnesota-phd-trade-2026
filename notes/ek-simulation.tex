@@ -1,0 +1,410 @@
+\documentclass[12pt,pdftex]{article}
+\usepackage[pdftex]{graphicx,color}
+\usepackage{setspace,palatino,multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{titlesec}
+\usepackage{lscape}
+%\usepackage{subfigure}
+\usepackage{threeparttable}
+\usepackage{natbib}
+\bibliographystyle{ecta}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage{rotating}
+\usepackage[listings, most]{tcolorbox}
+\definecolor{nblue}{RGB}{0,0,128}
+\usepackage{afterpage}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode} 
+
+\usepackage[pdftex,colorlinks=true, bookmarks=false,
+pdfstartview={XYZ null null 0.85},
+pdftitle={Teaching Notes: Eaton and Kortum (2002)},
+pdfauthor={Michael E. Waugh},
+pdfkeywords={},
+colorlinks=true,linkcolor=darkgray,citecolor=darkgray,urlcolor=darkgray,
+breaklinks]{hyperref}
+
+
+\newcounter{saveeqni}%
+\newcounter{saveeqn01i}%
+\newcommand{\alpheqni}{\setcounter{saveeqni}{\value{section}}%
+%\setcounter{saveeqn01i}{\value{subsectioni}}%
+\renewcommand{\theequation}
+    {\alph{saveeqni}\mbox{.\arabic{equation}}}}%
+\newcommand{\reseteqni}{\setcounter{equation}{\value{saveeqni}}%
+\renewcommand{\theequation}{\arabic{equation}}}%
+
+\newtheorem{as}{Assumption}
+\newtheorem{reg}{Regularity Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corr}{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prp}{Proposition}
+\newtheorem{rmk}{Remark}
+\newenvironment{prf}{{\bf Proof}}{\hfill { }}
+
+\DeclareMathOperator*{\plim}{plim}
+\DeclareMathOperator*{\umax}{max}
+
+\special{papersize=8.5in,11in}
+\onehalfspacing
+\setlength{\parindent}{0.1em}
+\setlength{\parskip}{.09in}
+\textwidth15.75cm
+\evensidemargin 1.5in
+\oddsidemargin 1.5in
+\topmargin 8.5cm
+\textheight 10in
+\hyphenation{over-lapping}
+
+\tcolorboxenvironment{prp}{%
+boxrule = 0mm, breakable, colframe=white,
+before skip=5pt,after skip=5pt,
+colback=gray!5!white,
+top = 2mm,
+bottom = 2mm%,
+%borderline north={1pt}{1pt}{gray},
+%borderline south={1pt}{1pt}{gray}
+}
+
+\titleformat{\section}{\color{black}\large\bf}{\color{black}{\thesection.}}{.25cm}{}
+\titleformat{\subsection}{\color{black}\normalsize\bf}{\thesubsection.}{.5em}{}
+\titleformat{\subsubsection}{\color{black}\normalsize\bf}{\thesubsubsection.}{.5em}{}
+
+\titlespacing{\section}{0pt}{*1.5}{*.5}
+\titlespacing{\subsection}{0pt}{*1.5}{*.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{*.5}
+
+\def\thesection{\arabic{section}}
+\def\thesubsection{\arabic{section}.\arabic{subsection}}
+\def\thesubsubsection{\arabic{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+
+\renewcommand{\arraystretch}{1.1}
+\usepackage[margin=2cm]{geometry}
+
+
+
+\begin{document}
+
+
+\begin{onehalfspacing}
+
+\centerline{\large\textbf{The EK-framework and Simulation, by Mike Waugh}}
+
+One of the overlooked properties of the EK framework (\citet{eaton2002technology}, \citet{bernard2003plants}, or \citet{eaton2011anatomy}) is how, via simulation, the model can be solved, calibrated, and analyzed. 
+
+Let's focus on a specific example. The \citet{bernard2003plants} paper wants to match and understand the micro-behavior (firms, productivity dispersion, markups) of the economy in response to globalization-like shocks.  How do markups respond to a reduction in trade costs and for whom? Who expands or not or exits? These questions are what they designed the paper / model to speak to. 
+
+To answer these kinds of question one needs to be able to generate a dataset from the model that mimics the kind of data set that one might see in a Census RDC.\footnote{This is something one hears Ellen talking about | the idea that one should treat model output just like data. I think its a very important concept to understand.} This is where the explicit distributional assumptions of the EK framework help a lot. First, the distributional assumption provides away to aggregate and connect the model with aggregate outcomes like trade flows (this is what \citet{eaton2002technology} emphasized). Second, they provide a way to construct outcomes at the micro-level through simulation. I'm going to focus on this latter point in the notes below.
+
+\section{Simulation | The Basics}
+
+A key idea is in simulation based approaches is what is called the \textbf{Inverse CDF Method.} This method essentially allows us to generate random variables from any distribution as long as we can compute the inverse CDF of the distribution. Then once we have random variables from distribution that we want, we can use \textbf{Monte Carlo Integration} to approximate integrals numerical that may be difficult / impossible to compute analytically. This section briefly discusses these two approaches. 
+
+\subsection{The Inverse CDF Method}
+
+The idea is this: suppose we want to draw random samples from a continuous random variable $X$ with CDF $F_X(x) = \Pr(X \leq x)$. In the EK context, this could be the technology draws and (as will show below) prices directly. The next step is that if we can compute $F_X^{-1}$, the inverse CDF method (also called the quantile transform) gives us an exact sampling algorithm.
+
+\medskip
+\noindent\textbf{Algorithm.} 
+\begin{enumerate}[nosep]
+    \item Draw $U \sim \text{Uniform}(0,1)$.
+    \item Set $X = F_X^{-1}(U)$.
+\end{enumerate}
+Then $X \sim F_X$.
+
+Why does this work? The key result is that if $U \sim \text{Uniform}(0,1)$, then the random variable $F_X^{-1}(U)$ has distribution $F_X$. To see this, note that
+\begin{align}
+\Pr\!\bigl(F_X^{-1}(U) \leq x\bigr) = \Pr\!\bigl(U \leq F_X(x)\bigr) = F_X(x),
+\end{align}
+where the first equality uses the fact that $F_X$ is monotone increasing (so applying $F_X$ to both sides preserves the inequality), and the second equality uses the fact that $U$ is uniform on $(0,1)$.
+
+\subsection{Monte Carlo Integration}
+
+The inverse CDF method becomes especially powerful when combined with simulation to approximate integrals that may be difficult or impossible to evaluate analytically. In the EK context, it's true that with the Fr\'{e}chet distribution the integrals we care about are computable by hand. However, there are instances where this integral is not easy, e.g., what is the variance of TFPR in BEJK? This is where Monte Carlo integration comes into play. 
+
+\medskip
+\noindent\textbf{Setup.} Suppose we want to compute
+\begin{align}
+I = \int g(x)\, f(x)\, dx = \mathbb{E}_{X \sim f}\!\bigl[g(X)\bigr],
+\end{align}
+where $f$ is a probability density and $g$ is some function of $x$. The law of large numbers tells us that if $X_1, X_2, \ldots, X_N$ are i.i.d.\ draws from $f$, then the sample mean
+\begin{align}
+\hat{I}_N = \frac{1}{N}\sum_{i=1}^{N} g(X_i) \xrightarrow{\;a.s.\;} I \quad \text{as } N \to \infty. \label{eq:mc-estimator}
+\end{align}
+This is the \textbf{Monte Carlo estimator} of $I$. Below I sketch out the procedure to construct this estimator. 
+
+\medskip
+\noindent\textbf{Procedure.}
+\begin{enumerate}[nosep]
+    \item Use the inverse CDF method (or any valid sampler) to draw $X_1, \ldots, X_N \stackrel{iid}{\sim} f$.
+    \item Compute $\hat{I}_N = \frac{1}{N}\sum_{i=1}^{N} g(X_i)$.
+\end{enumerate}
+
+The question that always arises with this method is how accurate is it? How many draws do I need? If $\text{Var}(g(X)) = \sigma^2 < \infty$, the central limit theorem gives
+\begin{align}
+\sqrt{N}\,\bigl(\hat{I}_N - I\bigr) \xrightarrow{\;d\;} \mathcal{N}(0,\, \sigma^2),
+\end{align}
+so the standard error of the Monte Carlo estimator is $\sigma / \sqrt{N}$. So to halve the variance requires quadrupling the number of draws, that is the rate of convergence is $O(N^{-1/2})$ regardless of dimension. At first, the $O(N^{-1/2})$ rate may look slow compared to methods like quadrature. However, the Monte Carlo rate \emph{does not depend on the dimension of the integral}. Deterministic methods suffer from the curse of dimensionality---their convergence deteriorates rapidly as the number of dimensions grows | while Monte Carlo maintains $O(N^{-1/2})$ whether you are integrating over $\mathbb{R}$ or $\mathbb{R}^{100}$. 
+
+In the EK context, this is why simulation methods are the way to go. Recall that in our EK notes, one can see that integration is increasing in the number of countries. Note as well, in the supply chain discussion, the options to consider might increase, but this argument says that Monte Carlo maintains $O(N^{-1/2})$.
+
+\section{Example: EK 2002}
+
+Let's put this approach to use. First, lets focus on the competitive EK environment. 
+
+Recall that what we want to compute is the expenditure share:
+\begin{align}
+\pi_{nj} = \frac{\int_0^1 x_{nj}(\omega) p_{nj}(\omega)^{1-\sigma} \, d\omega}{\int_0^1 \sum_k x_{nk}(\omega) p_{nk}(\omega)^{1-\sigma} \, d\omega}, \label{eq:expenditure-share}
+\end{align}
+or what share of expenditure does the consume in $n$ purchase from $j$. And then the pieces that go into this are the $x$ function which is
+\begin{align}
+x_{nj}(\omega) = \begin{cases}
+1 , & \mbox{if} \ \  \ p_{nj}(\omega)  \quad \leq \quad \min\limits_{j'} \bigg \{ \ p_{nj'}(\omega)\ \bigg \} \\
+\\
+0, & \ \mbox{otherwise}.
+\end{cases}
+\end{align}
+and we have prices are set competitively where 
+\begin{align}\label{eq:ce-price}
+p_{ni}(z) = \frac{w_{i} d_{ni}}{z_{i}(\omega)}.
+\end{align}
+
+\subsection{Fr\'{e}chet Inverse CDF}
+
+Recall that for each good $\omega$, productivity $z_j(\omega)$ in country $j$ is an independent draw from a Fr\'{e}chet (Type II extreme value) distribution with CDF:
+\begin{align}
+F_j(z) = \exp \left \{ -T_j z^{-\theta} \right \} = \text{Prob} \left\{ z_j(\omega) \leq z \right\}
+\end{align}
+Then we can use the same logic as before where 
+\begin{align}
+F_j^{-1}(U) = \bigg( \frac{ -\log U }{T_j} \bigg)^{\frac{-1}{\theta}} \label{eq:inverse-frechet}
+\end{align}
+and then from (\ref{eq:inverse-frechet}) we can sample the productivity terms $z$ as we wish.
+
+\subsection{Monte Carlo Integration of Demand}
+
+The focus here is that we want to compute the integrals on the top and bottom of (\ref{eq:expenditure-share}). Here is a step by step way I think about this.
+\begin{enumerate}
+\item I want to think of discrete points on the continuum to understand the map from the integral to draws in some economic sense. These discrete points are the number of draws used to construct (\ref{eq:mc-estimator}). I'll label these points as integers $\omega = 1\ldots N^d$ where $N^d$ is the number of discrete points / draws employed.
+    
+\item Then for each good $\omega$, we use (\ref{eq:inverse-frechet}) to draw a vector $\bar z(\omega) = \{ z_1(\omega), z_2(\omega), \ldots z_J(\omega)\}$. This vector of technology draws is of length $J = $ the number of countries. Note that each country has their own specific distribution for which $z_j(\omega)$ would come from and we can do this independently because that is the assumption. 
+
+\item The estimator of the numerator of (\ref{eq:expenditure-share}) is
+\begin{align}
+\frac{1}{N^d}\sum_{\omega=1}^{N^d} x_{nj}(\bar z(\omega) ) \cdot  p_{nj}(z_j( \omega ) )^{1-\sigma}, \label{eq:demand-est1}
+\end{align}
+where notice how the function $x_{nj}(\bar z(\omega) )$ depends upon the entire vector of technologies associated with point $\omega$ because we need to be making comparisons as to which country is the low cost supplier. Then the price \textbf{only} depends upon the $j$ specific technology draw. 
+
+\item Then the estimator of the denominator of (\ref{eq:expenditure-share}) simply is the sum of (\ref{eq:demand-est1}) across all possible source countries
+\begin{align}
+\frac{1}{N^d}\sum_{\omega=1}^{N^d} \sum_{k} \bigg \{ x_{nk}(\bar z(\omega) ) \cdot  p_{nk}(z_k( \omega ) )^{1-\sigma} \bigg \}, \label{eq:demand-est2}.
+\end{align}
+
+\item Then the expenditure share can by combining the two so
+\begin{align}
+\pi_{nj} \approx \frac{\sum_{\omega=1}^{N^d} x_{nj}(\bar z(\omega) ) \cdot  p_{nj}(z_j( \omega ) )^{1-\sigma} }{\sum_{\omega=1}^{N^d} \sum_{k} \bigg \{ x_{nk}(\bar z(\omega) ) \cdot  p_{nk}(z_k( \omega ) )^{1-\sigma} \bigg \} }.
+\end{align}
+where notice that we can dispense with $\frac{1}{N^d}$ scaling when computing this fraction.
+\end{enumerate}
+In some ways this is very straightforward. In the back of these notes I have the algorithm (Algorithm \ref{alg:ek-sim}) from the code that I've been working with.
+
+\subsection{Does it work well?}
+
+\begin{figure}[t]
+\centering
+\caption{Simulated Trade Flows\\}\label{fig:simmulated-trade-flows}
+\includegraphics[height=0.45\textheight]{./figures/trade_model_fit.png}
+\end{figure}
+
+Yes. And fast. 
+
+The figure in Figure \ref{fig:simmulated-trade-flows}, plots model versus the data. Note that it should not be perfect because the gravity regression does not fit perfectly. This, however, is a very good fit.  
+
+\section{Connection with Gravity and Prices}
+
+There is one more detail that makes simulation in the EK framework very continent. Stepping back when one looks through the equations above, one might say well I need to know a lot to do all of this. I need to know trade costs, wages, the technology parameters $T$s, in addition to a $\theta$ and a $\sigma$. It turns out that one can infer a lot of these objects from trade data and do so without even having to compute and equilibrium. 
+
+So the way this is done is to estimate the parameters for the country-specific productivity distributions and trade costs (scaled by $\theta$) from bilateral trade-flow data. Relative expenditure shares in the EK model take the form
+\begin{align}
+\log \left( \frac{\pi_{nj}}{\pi_{nn}} \right) = S_j - S_n - \theta \log \tau_{nj}, \label{eq:gravity}
+\end{align}
+where $S_i$ is defined as $\log \left[ T_i w_i^{-\theta} \right]$. The goal is to estimate the objects $S_i$ for all $i = 1, \ldots, N$ and $\theta \log \tau_{ni}$ for all country pairs $n$ and $i$ such that $n \neq i$. The previous equation gives rise to an empirical gravity equation that corresponds to the theoretical expression in (\ref{eq:gravity}). It is given by
+\begin{align}
+\log \left( \frac{\pi_{nj}}{\pi_{nn}} \right) = \hat{S}_j - \hat{S}_n - \hat{\theta} \log \hat{\tau}_{nj} + \nu_{nj}. \label{eq:empirical-gravity}
+\end{align}
+$\hat{S}_i$'s are recovered as the coefficients on country-specific dummy variables given the restrictions on how trade costs can covary across countries. Now notice how we have $N^2 - N$ observations on the left-hand side and we have $N + N^2 - N$ parameters to estimate. To get anywhere, we need to make a functional form assumption on the trade costs. The simplest way to deal with this is to assume that they are a function of distance. In \citet{waugh2010international}, I used an expression where trade costs take the following functional form
+\begin{align}
+\log \hat{\tau}_{ni} = d_k + b_{ni} + ex_i. \label{eq:trade-costs}
+\end{align}
+Here, trade costs are a logarithmic function of distance, where $d_k$ with $k = 1, 2, \ldots, 6$ is the effect of distance between country $i$ and $n$ lying in the $k$-th distance interval. $b_{ni}$ is the effect of a shared border in which $b_{ni} = 1$ if country $i$ and $n$ share a border and zero otherwise.
+
+Now the key observation is that the parameter estimates obtained from the gravity regression (\ref{eq:empirical-gravity}) are sufficient to simulate trade flows and micro-level prices up to a constant, $\hat{\theta}$.
+
+The connection to simulation is direct. Notice from (\ref{eq:ce-price}) that for any good $\omega$, the delivered price from $j$ to $n$ is $p_{nj}(\omega) = d_{nj} \cdot w_j / z_j(\omega)$. Thus, rather than simulating productivities $z_j(\omega)$ separately, it is sufficient to simulate the \textit{inverse of marginal costs}, defined as
+\begin{align}
+u_j(\omega) \equiv \frac{z_j(\omega)}{w_j},
+\end{align}
+so that delivered prices are simply $p_{nj}(\omega) = d_{nj} / u_j(\omega)$. Since $z_j(\omega)$ is Fr\'{e}chet distributed, $u_j$ inherits a distribution with CDF
+\begin{align}
+\Pr(u_j(\omega) \leq u) = \exp\!\left( -\tilde{S}_j \, u^{-\theta} \right), \quad \text{with} \quad \tilde{S}_j = \exp(S_j) = T_j w_j^{-\theta}. \label{eq:marginal-cost-cdf}
+\end{align}
+This is the important connection: the $S_j$'s recovered as country fixed effects from the gravity equation (\ref{eq:empirical-gravity}) are \textit{exactly} the parameters that govern the distribution from which we sample marginal costs. Applying the inverse CDF method to (\ref{eq:marginal-cost-cdf}) gives
+\begin{align}
+u_j(\omega) = F_j^{-1}(U) = \left( \frac{-\log U_{j\omega}}{\tilde{S}_j} \right)^{-1/\theta}, \quad U_{j\omega} \sim \text{Uniform}(0,1), \label{eq:inverse-marginal-cost}
+\end{align}
+which is the same inverse Fr\'{e}chet formula as (\ref{eq:inverse-frechet}), but now parameterized directly with the gravity estimates $\hat{S}_j$. Thus, having obtained the coefficients $\hat{S}_j$ from the first-stage gravity regression and estimates of trade costs $\hat{\tau}_{ni}$, we can simulate the inverse of marginal costs and prices without ever needing to separately identify $T_j$ or $w_j$.
+
+\section{Example: BEJK 2003}
+
+Now consider the Bertrand competition environment of \citet{bernard2003plants}. The key difference from the competitive EK model is in how prices are determined. Rather than pricing at marginal cost, the low-cost producer in each market sets its price strategically---just low enough to keep the next-best competitor out. This means that simulation now requires us to track not only the lowest-cost supplier, but also the relevant second-best alternative.
+
+\subsection{Two Draws per Good}
+
+Recall that in the BEJK setup, each country $j$ draws \textit{two} independent productivity levels for each good $\omega$. The first draw $z_j^{(1)}(\omega)$ is the most efficient producer in country $j$; the second draw $z_j^{(2)}(\omega)$ is the second-most efficient. 
+
+Sampling the first draw works exactly as in the EK case: apply the inverse CDF method to the Fr\'{e}chet distribution parameterized by $\tilde{S}_j$ (which would come from the gravity regression above). And I'll work in terms of marginal costs $c_j(\omega) = w_j / z_j(\omega)$, the first draw is
+\begin{align}
+c_j^{(1)}(\omega) = \left( \frac{-\log U_{j\omega}^{(1)}}{\tilde{S}_j} \right)^{1/\theta}, \quad U_{j\omega}^{(1)} \sim \text{Uniform}(0,1). \label{eq:bejk-first-draw}
+\end{align}
+The second draw $c_j^{(2)}(\omega)$ is the second-order statistic: it must satisfy $c_j^{(2)}(\omega) \geq c_j^{(1)}(\omega)$ (i.e., a weakly higher marginal cost). BEJK show that the conditional distribution of the second-best productivity, given the first, has CDF
+\begin{align}
+F\!\left(c_j^{(2)} \;\middle|\; c_j^{(1)}\right) = 1 - \exp\!\left\{ -\tilde{S}_j \left(c_j^{(2)}\right)^{-\theta} + \tilde{S}_j \left(c_j^{(1)}\right)^{-\theta} \right\}. \label{eq:bejk-conditional-cdf}
+\end{align}
+Note the structure: at $c_j^{(2)} = c_j^{(1)}$, the exponential term is $e^0 = 1$, so the CDF equals zero---confirming that the second-best cost is (almost surely) strictly above the first. As $c_j^{(2)} \to \infty$, the CDF approaches one.
+
+Applying the inverse CDF method to (\ref{eq:bejk-conditional-cdf}) gives the sampling formula
+\begin{align}
+c_j^{(2)}(\omega) = \left( \frac{-\log V_{j\omega}}{\tilde{S}_j} + \left(c_j^{(1)}(\omega)\right)^{-\theta} \right)^{-1/\theta}, \quad V_{j\omega} \sim \text{Uniform}(0,1), \label{eq:bejk-second-draw}
+\end{align}
+where $V_{j\omega}$ is an independent uniform draw. The expression has an intuitive structure: it takes the first draw's contribution $\left(c_j^{(1)}\right)^{-\theta}$, adds the new randomness $-\log V / \tilde{S}_j$, and inverts. Since we are adding a positive quantity inside the parentheses relative to the first draw formula (\ref{eq:bejk-first-draw}), the result is guaranteed to satisfy $c_j^{(2)}(\omega) \geq c_j^{(1)}(\omega)$---the second-best producer always has weakly higher cost.
+
+\subsection{Bertrand Pricing}
+
+In BEJK, the low-cost supplier has market power and the price it charges is constrained by three objects:
+\begin{enumerate}
+    \item \textbf{The second-lowest international cost.} Across all countries $j = 1, \ldots, J$, find the lowest delivered cost and let $j^*$ denote the low-cost supplier. So $c^{(1)}_{nj^*}(\omega)$ and the second-lowest delivered cost $c^{(1)}_{nj}(\omega)$ using each country's \textit{first} draw. 
+
+    \item \textbf{The second domestic draw of the winner.} This is the tricky one. That country, $j^*$ own second-best producer has delivered cost $c^{(2)}_{nj^*}(\omega)$. If this is lower than any $c^{(1)}_{nj}(\omega)$ for $j \neq j^*$, then the binding competitive threat comes from within the winning country.
+
+    \item \textbf{The monopoly markup.} Under CES demand with elasticity $\sigma$, the unconstrained monopoly price is $\frac{\sigma}{\sigma - 1} \cdot c^{(1)}_{nj^*}(\omega)$. The firm never charges above this even if the competitive threats are weak.
+\end{enumerate}
+
+The price actually charged is the minimum of these three:
+\begin{align}
+p_{nj^*}(\omega) = \min \left\{ c^{(2)}_{nj^*}(\omega), \quad \bigg \{ c^{(1)}_{nj}(\omega), \forall j \neq j^* \bigg \}, \quad \frac{\sigma}{\sigma-1} \cdot c^{(1)}_{nj^*}(\omega) \right\}. \label{eq:bejk-price}
+\end{align}
+ Which of the three binds determines the markup that the low-cost supplier earns on good $\omega$ in market $n$.
+ 
+ \begin{figure}[t]
+\centering
+\caption{Simulated Trade Flows\\}\label{fig:bejk-simmulated-trade-flows}
+\includegraphics[height=0.45\textheight]{./figures/bejk_trade_model_fit.png}
+\end{figure}
+
+\subsection{Monte Carlo Integration of Demand}
+
+With pricing determined by (\ref{eq:bejk-price}), the construction of trade shares proceeds in the same spirit as Section 2.2, but with $p_{nj^*}(\omega)$ replacing the competitive price. 
+
+The important point is that nothing changes about the Monte Carlo mechanics. We are still averaging over i.i.d.\ draws of goods. What changes is the \textit{integrand}: instead of evaluating a competitive price, we now evaluate the Bertrand price, which depends on richer information about the cost distribution (the identity of the winner, their second draw, and the runner-up's cost). 
+
+\subsection{Does it work well?}
+
+The figure in Figure \ref{fig:bejk-simmulated-trade-flows}, plots BEJK model output vs. EK model output. We know theoretically that these two, in aggregate, should be the same. And, well it looks pretty good to me.
+
+\afterpage{%
+\clearpage
+
+\newpage 
+
+\begin{algorithm}[H]
+\footnotesize{ 
+\caption{Simulate Trade Patterns --- Competitive EK Model}\label{alg:ek-sim}
+\begin{algorithmic}[1]
+
+\Require $\mathbf{S} = \{S_1, \ldots, S_J\}$ (gravity parameters, sufficient to simulate marginal costs), $\mathbf{d}$ ($J \times J$ trade cost matrix), $\theta$ (Fr\'{e}chet shape), $\sigma$ (elasticity of substitution), $N^d$ (number of goods/draws)
+
+\Ensure $\boldsymbol{\pi}$ ($J \times J$ trade share matrix), $\mathbf{p}^{\min}$ ($J \times N^d$ matrix of lowest delivered prices)
+
+\Statex
+\Statex \textit{\% Step 1: Draw productivities and compute marginal costs}
+\For{$j = 1, \ldots, J$} \Comment{Loop over countries}
+    \For{$\omega = 1, \ldots, N^d$} \Comment{Loop over goods}
+        \State Draw $U_{j\omega} \sim \text{Uniform}(0,1)$
+        \State $p_{j}(\omega) \leftarrow \left( \dfrac{-\log U_{j\omega}}{S_j} \right)^{-1/\theta}$ \Comment{Inverse Fr\'{e}chet CDF}
+    \EndFor
+\EndFor
+
+\Statex
+\Statex \textit{\% Step 2: Find lowest-cost supplier for each good in each destination}
+\State Initialize $m_{nj} \leftarrow 0$ for all $n, j$ \Comment{Accumulator for trade flows}
+
+\For{$\omega = 1, \ldots, N^d$} \Comment{Loop over goods}
+    \For{$n = 1, \ldots, J$} \Comment{Loop over importing countries}
+
+        \State $p^{\min} \leftarrow p_{n}(\omega)$; \quad $j^{*} \leftarrow n$ \Comment{Initialize: home supplier}
+
+        \For{$j = 1, \ldots, J$} \Comment{Loop over potential exporters}
+            \State $p^{cif}_{nj}(\omega) \leftarrow d_{nj} \cdot p_{j}(\omega)$ \Comment{Delivered price}
+            \If{$p^{cif}_{nj}(\omega) < p^{\min}$}
+                \State $p^{\min} \leftarrow p^{cif}_{nj}(\omega)$; \quad $j^{*} \leftarrow j$ \Comment{Update low-cost supplier}
+            \EndIf
+        \EndFor
+
+        \State $m_{n,\, j^{*}} \leftarrow m_{n,\, j^{*}} + (p^{\min})^{1-\sigma}$ \Comment{Accumulate}
+        \State Record $p^{\min}_{n}(\omega) \leftarrow p^{\min}$
+
+    \EndFor
+\EndFor
+
+\Statex
+\Statex \textit{\% Step 3: Normalize to obtain trade shares}
+\For{$n = 1, \ldots, J$}
+    \State $G_n \leftarrow \dfrac{1}{N^d} \displaystyle\sum_{j=1}^{J} m_{nj}$ \Comment{Monte Carlo estimate of price index term}
+    \For{$j = 1, \ldots, J$}
+        \State $\pi_{nj} \leftarrow \dfrac{m_{nj} / N^d}{G_n}$ \Comment{Trade share}
+    \EndFor
+\EndFor
+
+\Statex
+\Return $\boldsymbol{\pi}$, $\mathbf{p}^{\min}$
+
+\end{algorithmic}
+}
+\end{algorithm}
+}
+
+
+
+
+
+
+\newpage
+\clearpage
+
+\bibliography{./bibtex/micro_price_bibtex}
+
+
+
+\end{onehalfspacing}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
