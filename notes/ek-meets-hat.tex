@@ -1,0 +1,365 @@
+\documentclass[12pt,pdftex]{article}
+\usepackage[pdftex]{graphicx,color}
+\usepackage{setspace,palatino,multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{titlesec}
+\usepackage{lscape}
+%\usepackage{subfigure}
+\usepackage{threeparttable}
+\usepackage{natbib}
+\bibliographystyle{ecta}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage{rotating}
+\usepackage[listings, most]{tcolorbox}
+\definecolor{nblue}{RGB}{0,0,128}
+\usepackage{afterpage}
+
+
+\usepackage[pdftex,colorlinks=true, bookmarks=false,
+pdfstartview={XYZ null null 0.85},
+pdftitle={Teaching Notes: Eaton and Kortum (2002)},
+pdfauthor={Michael E. Waugh},
+pdfkeywords={},
+colorlinks=true,linkcolor=darkgray,citecolor=darkgray,urlcolor=darkgray,
+breaklinks]{hyperref}
+
+
+\newcounter{saveeqni}%
+\newcounter{saveeqn01i}%
+\newcommand{\alpheqni}{\setcounter{saveeqni}{\value{section}}%
+%\setcounter{saveeqn01i}{\value{subsectioni}}%
+\renewcommand{\theequation}
+    {\alph{saveeqni}\mbox{.\arabic{equation}}}}%
+\newcommand{\reseteqni}{\setcounter{equation}{\value{saveeqni}}%
+\renewcommand{\theequation}{\arabic{equation}}}%
+
+\newtheorem{as}{Assumption}
+\newtheorem{reg}{Regularity Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corr}{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prp}{Proposition}
+\newtheorem{rmk}{Remark}
+\newenvironment{prf}{{\bf Proof}}{\hfill { }}
+
+\DeclareMathOperator*{\plim}{plim}
+\DeclareMathOperator*{\umax}{max}
+
+\special{papersize=8.5in,11in}
+\onehalfspacing
+\setlength{\parindent}{0.1em}
+\setlength{\parskip}{.09in}
+\textwidth15.75cm
+\evensidemargin 1.5in
+\oddsidemargin 1.5in
+\topmargin 8.5cm
+\textheight 10in
+\hyphenation{over-lapping}
+
+\tcolorboxenvironment{prp}{%
+boxrule = 0mm, breakable, colframe=white,
+before skip=5pt,after skip=5pt,
+colback=gray!5!white,
+top = 2mm,
+bottom = 2mm%,
+%borderline north={1pt}{1pt}{gray},
+%borderline south={1pt}{1pt}{gray}
+}
+
+\titleformat{\section}{\color{black}\large\bf}{\color{black}{\thesection.}}{.25cm}{}
+\titleformat{\subsection}{\color{black}\normalsize\bf}{\thesubsection.}{.5em}{}
+\titleformat{\subsubsection}{\color{black}\normalsize\bf}{\thesubsubsection.}{.5em}{}
+
+\titlespacing{\section}{0pt}{*1.5}{*.5}
+\titlespacing{\subsection}{0pt}{*1.5}{*.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{*.5}
+
+\def\thesection{\arabic{section}}
+\def\thesubsection{\arabic{section}.\arabic{subsection}}
+\def\thesubsubsection{\arabic{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+
+\renewcommand{\arraystretch}{1.1}
+\usepackage[margin=2cm]{geometry}
+
+
+
+\begin{document}
+
+\begin{onehalfspacing}
+
+\centerline{\large\textbf{Customer Heterogeneity, by Mike Waugh}}
+
+In this set of notes I'm going to discuss incorporating heterogeneous agents households into what we have been working on. Some of this is quite new. First, it builds on my HAT paper or \citet{waugh2023heterogeneous}. But the even newer bit is that work with Simon and I in \citet{p-iq} has pushed the frontier forward in a way that basically allows one to think about \citet{eaton2002technology} and HAT in a seamless way. This is what the focus will be on.
+
+\section{Why did I start working on HAT?}
+
+There are essentially two issues that I had in my head and captivated me.
+
+\textbf{1.} The first issue is an empirical fact about heterogeneous price sensitivity. \citet{auer2022unequal} document that poorer households have higher elasticities of substitution. They arrive at this conclusion by studying microdata on Swiss household purchases of Swiss versus French varieties within the same goods category following exogenous relative price changes due to the 2015 Swiss Franc appreciation. Subject to the same, exogenous, decline in prices of French varieties, poor households substituted spending toward French varieties at a significantly higher elasticity.
+
+This fact is interesting to me for three reasons. One is that it sounds intuitively right, that is poor households care more about prices than rich households. Second, this kind of mechanism is completely abstracted from in basic macro and/or trade models. For example, CES preferences has the implication that even with heterogeneous households, all households substitute in the same way.
+
+Related to the previous point, is that for a lot of questions, what really matters is how things change, not levels. Let's first think about a lesson of BEJK. In that model, it was designed to speak to an issue about levels, e.g. TFPR dispersion across firms. But for counter-factual questions, how markups and TFPR change is critical. And they wrote down a model where the distribution of markups and TFPR \textbf{do not} change in response to a shock.
+
+The same idea is present when thinking about household heterogeneity and trade. If we want to have a model where household heterogeneity matters for trade, then we need heterogeneity to influence how the economy responds to a change in a trade shock. If households are heterogeneously exposed to trade, but all substitute in the same exact way, then how the economy will respond to a trade shock will likely be the same as in an appropriately constructed rep-agent economy.
+
+\textbf{2.} The second idea relates to the integration of trade issues and international asset market issues. Often these are kept separate. An argument for this separation would go something like this: there might be feedback between overall demand conditions, the level of trade flows, demand for assets, and international asset prices. But with CES preferences, the \textbf{relative demand} for goods from different countries is independent of what is going on the asset side of the economy. So the financial market side does not matter for relative trade flows.
+
+HAT breaks this link and in fact there is feedback between the two. I still have not really dug into this that much, but it is something that is / has been at the top of my mind.
+
+\section{The HAT (Shopping Cart) Environment}
+
+Here is the deal. The recent big insight is that HAT, \citet{p-iq}, can be set up in a way that it is essentially the same as in \citet{eaton2002technology}. Let's talk through this to make it crystal clear.
+
+\textbf{Commodity space:} Goods are indexed by \( \omega \in [0,1] \). There are $J$ countries. Competitive firms in each country can produce good $\omega$, so each country's ``version'' of $\omega$ is not differentiated | they are perfect substitutes.
+
+\textbf{Consumers' Preferences.} In each country, there are heterogeneous consumers with preferences:
+\begin{align}
+\mathbb{E}_{0} \sum_{t = 0}^{\infty} \beta \, \int_0^1 \bigg\{ \sum_{j} x_{njt}(\omega) \bigg[ u( c_{njt}(\omega)) + \epsilon_{njt}^k(\omega) \bigg ] \bigg \}  d\omega.
+\label{eq:utility}
+\end{align}
+where $k$ is the identity / name of a consumer in country $n$. First, there is the dynamic part of these preferences, which is standard with time separability across dates and constant discounting. Second, there is the within-period part. First notice that this within-period part is very similar to that discussed in \citet{eaton2002technology}. As before, $x_{nj}(\omega)$ is an indicator function that takes the value one if good $\omega$ is sourced from $j$ and zero for all other destinations. Again, I express preferences in this way to emphasize the discrete choice nature of the problem.
+
+What is different relative to \citet{eaton2002technology} is the incorporation of an additive taste shock $\epsilon_{njt}^k(\omega)$. These taste shocks are idiosyncratic to consumer $k$ and across time. Note that the consumer receives $J$ of these shocks for each $\omega$, every time period $t$. Moreover, the taste shocks are assumed to follow a Type 1 Extreme Value distribution (which we will discuss below).
+
+What are these shocks doing? In a nutshell, it makes the good choice not all about price any more. Even though some good may have a low price, a household might want to buy a slightly higher-priced good because their shock $\epsilon_{njt}^k(\omega)$ might be really good. The basic idea in HAT and \citet{p-iq} is that a household's wealth influences this trade-off between price and tastes for a good.
+
+This is different from the public versions of HAT or \citet{p-iq}. In the older versions, there is a ``one good at a time'' assumption. Here we have this ``shopping cart'' version. Its much better for many reasons. But one of the things we like about it is to get into the life of what the consumer is thinking: I need some detergent so which variety to buy, I need some ketchup so which variety, etc. So the household is consuming all goods, but only one variety of that good. Again, introspect on how \citet{eaton2002technology} is set up | it's the same exact idea. In contrast, think about how ``fruit salad'' models work: I buy all varieties of detergent and all varieties of ketchup and etc.
+
+\textbf{Consumers' Endowments.} Households can save and borrow in a non-state-contingent asset $a$, which is denominated in the units of the numeraire. One unit of the asset pays out with gross interest rate $R_{n}$ next period. Households face an exogenous debt limit $\phi$ that constrains borrowing so that
+\begin{align}
+a_{t+1} \geq - \phi_{n}.
+\label{eq:borrowing-constraint}
+\end{align}
+These pieces come together in the household's budget constraint; focusing on a stationary setting where prices are constant:
+\begin{align}
+\int_0^1 \sum_{j\in J} x_{njt}(\omega) p_{njt}(\omega) \, c_{njt}(\omega) d\omega +  a_{t+1} \ \ \leq \ \   R_{nt} a_{t} +  w_{nt} z_{t} .\label{eq:budget-constraint}
+\end{align}
+The value of consumption expenditures and asset holdings must be less than or equal to asset payments and labor earnings.
+
+A natural question here is why? Why not do something simpler? As you see below, \emph{\textbf{the}} issue in the model is the marginal utility of wealth. And the standard incomplete markets model is \emph{\textbf{the}} model to use when thinking about the distribution marginal utility of wealth.
+
+\textbf{Technologies and Trade Frictions.} Competitive producers in country \( j \), to produce a good \( \omega \), have access to a labor-only technology defined by the productivity level $z_j$. This productivity level is not indexed by $\omega$. So I'm going to abstract from productivity heterogeneity across goods | this will make my life easier. Specifically, all producers of \textbf{any} good \( \omega \) in country \( j \) have access to the production function:
+\begin{align}
+y_j(\omega) &= z_j n_j, \label{eq:production}
+\end{align}
+where labor efficiency units, $n_j$, is the only factor of production. Another way to think about this assumption is that all markets $\omega$ are symmetric.
+
+Frictions to trade are modeled as iceberg trade costs in the usual way.
+
+\textbf{Endowments.} Finally, each country has a labor endowment of mass $L_i$.
+
+\subsection{The Recursive Formulation}
+
+Now what I want to walk through is some properties of the household problem. Let's focus on a household given some assets and productivity shock, in country $n$. I'm also not going to impose the assumption that I made above about symmetry across markets; I'll do it later. The household has the following problem:
+\begin{align}
+v_{n,t}(a_{t}, z_{t}) = &\max\limits_{\ x_{njt}(\omega), \ c_{njt}(\omega), \ a_{t+1} } \int_0^1 \bigg\{ \sum_{j\in J} x_{njt}(\omega)  \bigg[ u( c_{njt}(\omega) ) + \epsilon_{njt}(\omega) \bigg ] \bigg \}  d\omega \, + \,  \beta \, \mathbb{E} \, v_{n,t+1} (a_{t+1}, z_{t+1}) \nonumber \\
+ \\
++& \, \lambda_{t}(a_{t},z_{t}) \bigg[ w_{nt} \, z_{t} + R_{nt} \, a_{t} - a_{t+1} - \underbrace{\int_0^1 \sum_{j\in J} x_{njt}(\omega) p_{njt}(\omega) \, c_{njt}(\omega)}_{e_{nt}(a_t, z_t)} \bigg]. \nonumber
+\end{align}
+where I'll term $e_{nt}(a_t, z_t)$ as expenditure. And I'm ignoring the borrowing constraint in the presentation.
+
+How to solve this problem? It looks very intractable. Here is a key observation: with the continuum of goods assumption, the variety choice is independent of dynamic considerations. That is, whether I consume orange juice from Brazil or orange juice from the US is an infinitesimal fraction of my total expenditure, and thus it has no impact on how much I should save today. This then essentially makes the goods choice static. Let's walk through this\ldots
+
+As usual, the optimal consumption choice satisfies
+\begin{align}
+ u'(c_{njt}(\omega)) = \lambda_{n,t}(a,z) \, p_{njt}(\omega), \label{eq:ce-intensive}
+\end{align}
+where the marginal utility of the goods is set equal to the marginal cost, which is how much income it takes as given by $p_{njt}(\omega)$ and then converted into utils at the marginal utility of wealth given by the multiplier $\lambda_{t}(a,z)$. Then the optimal discrete choice is the comparison across the different choices, good by good. This argument is exactly the same as in my presentation of \citet{eaton2002technology}, so
+\begin{align}
+\bigg[ u(c_{n1t}(\omega)) + &\epsilon_{n1t}(\omega) - \lambda_{t}(a,z) p_{n1t}(\omega) c_{n1t}(\omega) \bigg] \quad \mbox{vs.} \quad \nonumber \\
+&\bigg[ u(c_{n2t}(\omega)) + \epsilon_{n2t}(\omega)  - \lambda_{t}(a,z) p_{n2t}(\omega) c_{n2t}(\omega) \bigg] \quad \mbox{vs.} \ \ldots
+\end{align}
+where all the constant terms cancel out. The important term to cancel out is the $\mathbb{E} \, v_{n,t+1} (a_{t+1}, z_{t+1})$ term from the value function and the $a_{t+1}$ term in the budget constraint. This is where the discussion above matters: each $\omega$ good is infinitesimal, so the particular choice of a variety does not affect $\mathbb{E} \, v_{n,t+1} (a_{t+1}, z_{t+1})$ nor the choice $a_{t+1}$. Then the optimal choice rule is:
+\begin{align}\label{eq:choice-rule}
+x_{njt}(\omega)(a_{t},z_{t}) = \begin{cases}
+1 , & \mbox{if} \ \  u(c_{njt}(\omega)) + \epsilon_{njt}(\omega) - \lambda_{t}(a,z) p_{njt}(\omega) c_{njt}(\omega) \\
+\\
+& \quad \quad \geq \, \max\limits_{j' \in J} \bigg \{ \ u(c_{nj't}(\omega)) + \epsilon_{nj't}(\omega)  - \lambda_{nt}(a,z) p_{nj't}(\omega) c_{nj't}(\omega) \ \bigg \} \\
+\\
+0, & \ \mbox{otherwise}
+\end{cases}
+\end{align}
+Then the optimal asset choice satisfies
+\begin{align}
+\lambda_{t}(a_{t},z_{t}) = \beta \, \mathbb{E} \, v_{t,a'} (a_{t+1},z_{t+1})
+\end{align}
+and then with the envelope condition we have that
+\begin{align}
+\lambda_{t}(a_{t},z_{t}) = \beta \, R_{t+1} \, \mathbb{E} \, \lambda_{t+1}(a_{t+1},z_{t+1}) \label{eq:euler}
+\end{align}
+At this point we have the three key equations that characterize the solution to the household problem:
+\begin{itemize}
+\item The static consumption choice in (\ref{eq:ce-intensive}), which determines the intensive margin as to how much to consume.
+
+\item The choice rule in (\ref{eq:choice-rule}), which determines which national variety to consume.
+
+\item The Euler equation in (\ref{eq:euler}), which relates the marginal utility of wealth across time periods.
+\end{itemize}
+One thing to note quickly is how the marginal utility of wealth $\lambda$ is playing a critical role here. Obviously it dictates the asset choice and intensive margin choice. But the choice rule in (\ref{eq:choice-rule}) also depends upon the marginal utility of wealth. In essence, this setup gives a very powerful role to the marginal utility of wealth in shaping outcomes.
+
+\section{Aggregation}
+
+What we want to do now is to aggregate and get towards some statements about trade and trade elasticities. In the presentation below, I'm going to assume that we are in a stationary equilibrium where time subscripts can be suppressed.
+
+The first step is to construct the choice probability. So what we are going to do is compute the following integral:
+\begin{align}
+\pi_{nj}(\omega)(a,z) = \int_{-\infty}^{\infty}  x_{nj}(\omega)(a,z) \, d \epsilon
+\end{align}
+Fix a good $\omega$, a particular source $j$, and a particular type of consumer with states $(a,z)$. Now integrate \textbf{across possible taste shocks} to find the probability $\pi_{nj}(\omega)(a,z)$ that variety $j$ is chosen for good $\omega$. Notice that the taste shocks generate variation in the $x^k_{njt}(\omega)(a,z)$ indicator functions. That is, identical consumers in terms of states are making different variety choices.
+
+I want to make a couple of arguments to construct this integral. Note that in (\ref{eq:choice-rule}) we can convert the $c$s into functions of $\lambda$ and $p$s. So
+\begin{align}
+u(c_{nj}(\omega)) - \lambda(a,z) \, p_{nj}(\omega) \, c_{nj}(\omega) =& \frac{c_{nj}(\omega)^{1-\sigma}}{1-\sigma} - \lambda(a,z) \, p_{nj}(\omega) \, c_{nj}(\omega) \\
+\nonumber \\
+=& \frac{(\lambda(a,z) p_{nj})^{(\sigma-1)/\sigma}}{1-\sigma} - (\lambda(a,z) p_{nj}(\omega))^{(\sigma-1)/\sigma}
+\end{align}
+where the last line follows from substituting in $c_{nj}(\omega) = (\lambda p_{nj}(\omega))^{-1/\sigma}$. Then one more step to simplifying gives
+\begin{align}
+= (\lambda(a,z) p_{nj}(\omega))^{(\sigma-1)/\sigma} \cdot \frac{\sigma}{1-\sigma}
+\end{align}
+Then define $\eta$ as the shape parameter on the Type 1 Extreme Value distribution. This then gives rise to the following choice probabilities:
+\begin{align}
+\pi_{nj}(\omega)(a,z) =  \frac{\exp\bigg\{ \eta \cdot \big[\lambda(a,z) p_{nj}(\omega)\big]^{(\sigma-1)/\sigma} \cdot \frac{\sigma}{1-\sigma} \bigg \} }{\sum\limits_{j' \in J} \exp\bigg\{ \eta \cdot \big[\lambda(a,z) p_{nj'} (\omega) \big]^{(\sigma-1)/\sigma} \cdot \frac{\sigma}{1-\sigma} \bigg \}}
+\end{align}
+We can then construct aggregate trade flows by integrating across all different consumers. Aggregate imports of good $\omega$ from country $j$ in country $n$ are:
+\begin{align}
+M_{nj}(\omega) = \int\limits_{\mathcal{A} \times \mathcal{Z}} p_{nj}(\omega)\, c_{nj}(\omega)(a,z) \, \pi_{nj}(\omega)(a,z) \, da \, dz
+\end{align}
+where this is the value consumed by households of type $(a,z)$ times the probability that type $(a,z)$ households consume variety $j$, integrated across all types. Pause here for a second and notice this is delivering ``fruit salad'' like properties at the micro-level. Recall that in EK, for a given $\omega$, only one source is chosen. Here, because the taste shocks give every source a positive choice probability, for a given $\omega$ all sources will be supplying country $n$.
+
+The final step is to impose the symmetry assumption, which means dropping the $\omega$ index. Again, this is much like the technological side of the Armington model. Aggregate trade flows become:
+\begin{align}
+M_{nj} = \int\limits_{\mathcal{A} \times \mathcal{Z}} p_{nj}\, c_{nj}(a,z) \, \pi_{nj}(a,z) \, da \, dz
+\end{align}
+This is interesting for a lot of reasons. Imports take on a mixed logit formulation that very much mimics that used in the industrial organization literature | for example, \citet{berry1995automobile}. There are, however, several interesting differences. First, there is an active intensive margin, not unit demand. Second, a key issue shaping the choice probabilities is the marginal utility of wealth (which is an endogenous object, not a parameter). Third, the distribution over which demands are aggregated is endogenous. Household behavior (which variety to purchase) determines the distribution of wealth, which in turn determines the aggregate demand for a variety. In other words, this model imposes cross-equation restrictions between aggregate demand and individual demands through the distribution. So it is not a free parameter as in the IO literature, and it will change with changes in the primitives of the environment.
+
+\section{The HA Trade Elasticity}
+
+Now a key object is how aggregate trade flows respond to changes in trade costs. Define the trade elasticity:
+\begin{align}
+\theta_{nj} = \frac{\partial M_{nj}/M_{nj}}{\partial d_{nj}/d_{nj}} - \frac{\partial M_{nn}/M_{nn}}{\partial d_{nj}/d_{nj}},
+\label{eq:theta-def}
+\end{align}
+which measures the percentage change in imports from country $j$ relative to the percentage change in domestic purchases, in response to a one percent increase in bilateral trade costs $d_{ij}$. This is a partial equilibrium object, so I hold wages $w_j$ and all prices $p_{nj'}$ for $j' \neq j$ fixed.
+
+Recall that aggregate imports from $j$ in country $i$ are:
+\begin{align}
+M_{nj} = \int_{\mathcal{A} \times \mathcal{Z}} p_{nj} \, c_{nj}(a,z) \, \pi_{nj}(a,z) \, da \, dz,
+\end{align}
+and we can express expenditures as $p_{nj} c_{nj}(a,z) = \lambda(a,z)^{-1/\sigma} p_{nj}^{(\sigma-1)/\sigma}$. Then let $\alpha \equiv (\sigma-1)/\sigma$. For the first term in (\ref{eq:theta-def}), differentiate $M_{nj}$ with respect to $\ln p_{nj}$:
+\begin{align}
+\frac{\partial \ln M_{nj}}{\partial \ln d_{nj}} = \underbrace{\alpha}_{\text{intensive}}  + \int\limits_{\mathcal{A} \times \mathcal{Z}} \omega_{nj}(a,z) \, \underbrace{\frac{\partial \ln \pi_{nj}(a,z)}{\partial \ln p_{nj}}}_{\text{extensive}} da \, dz, \label{eq:Mij-decomp}
+\end{align}
+where I define the expenditure-share weight of type $(a,z)$ in total imports from $j$ as:
+\begin{align}
+\omega_{nj}(a,z) \equiv \frac{p_{nj} \, c_{nj}(a,z) \, \pi_{nj}(a,z)}{M_{nj}}.
+\end{align}
+Two terms appear in (\ref{eq:Mij-decomp}). The \textbf{intensive margin} gives the elasticity of conditional spending with respect to price: $\partial \ln(p_{ij} c_{ij}) / \partial \ln p_{ij} = \alpha = (\sigma-1)/\sigma$, this term has nothing to do with household heterogeneity and just depends upon $\sigma$. 
+
+The second terms is a expenditure weighted average of the \textbf{extensive margin.} And what I mean by the extensive margin is how consumers are moving across different goods and embodied by how the choice probability changes. How this object behaves is how we see wealth and income shaping trade elasticities. 
+
+
+\textbf{Extensive Margin.} From the logit structure derived above, here are some convenient steps to differentiating it: The first step is to define the utility from purchasing variety (net of the tats shock) as:
+\begin{align}
+V_{nj}(a,z) = \frac{\sigma}{1-\sigma} \left( \lambda(a,z) \, p_{nj} \right)^{(\sigma-1)/\sigma}.
+\end{align}
+Differentiating with respect to $\ln p_{ij}$:
+\begin{align}
+\frac{\partial V_{ij}(a,z)}{\partial \ln p_{ij}} = -\left(\lambda(a,z) \, p_{ij}\right)^{\alpha}.
+\end{align}
+The next step is to use the standard logit derivative:
+\begin{align}
+\frac{\partial \ln \pi_{nj}(a,z)}{\partial \ln p_{nj}} &= \eta \cdot \frac{\partial V_{nj}(a,z)}{\partial \ln p_{nj}} \cdot \left(1 - \pi_{nj}(a,z)\right) \\
+\nonumber \\
+&= -\eta \left(\lambda(a,z) \, p_{nj}\right)^{\alpha} \left(1 - \pi_{nj}(a,z)\right). \label{eq:logit-own}
+\end{align}
+This is a key equation. Notice that there are several forces shaping the households elasticity on the extensive margin:
+\begin{itemize}
+\item First, is how $\lambda(a,z)$ shows up. What this mean is high marginal utility of wealth households (poor) will have large price elasticise. In other words, this is working in the direction where the poor are price sensitive, rich are not. Just like the \citet{auer2022unequal} facts. 
+    
+\item Second, notice how the $p$ shows up there, which larger $p$s making the household more price sensitive. This is a formalization of what ``Marshalls Second Law of Demand'' that claimed that price elasticities are larger for higher priced goods. Why does this make sense?
+    
+\item The final term is a share adjustment. In the paper with \citet{p-iq}, this has the interpretation of being about the market power that $j$ has in $n$. So more important markets for $a,z$ guys push elasticities down. I'm going to do a small market approximation below and ignore this term. 
+\end{itemize}
+Pretty cool, now lets get to the aggregate elasticity. So first we have the term
+\begin{align}
+\frac{\partial \ln M_{nj}}{\partial \ln d_{nj}} = \alpha - \eta \cdot \int\limits_{\mathcal{A} \times \mathcal{Z}} \omega_{nj}(a,z) \, \left[\left(\lambda(a,z) \, p_{nj}\right)^{\alpha}\!\left(1-\pi_{nj}(a,z)\right)\right] da \, dz. \label{eq:first-term}
+\end{align}
+The second term we need is how domestic purchases $M_{nn}$ change with $d_{mj}$. This term only changes through the extensive margin, we can apply the similar Logit math
+\begin{align}
+\frac{\partial \ln \pi_{ii}(a,z)}{\partial \ln d_{ij}} = \eta \left(\lambda(a,z) \, p_{ij}\right)^{\alpha} \pi_{ij}(a,z),
+\end{align}
+where the sign is now positive: a rise in $d_{nj}$ diverts demand away from $j$ and toward the domestic variety. Using the same weighted expectation with weights $\omega_{ii}(a,z) \equiv p_{ii} c_{ii}(a,z) \pi_{ii}(a,z)/M_{ii}$:
+\begin{align}
+\frac{\partial \ln M_{ii}}{\partial \ln d_{ij}} = \eta \cdot \int\limits_{\mathcal{A} \times \mathcal{Z}} \omega_{nj}(a,z) \left[\left(\lambda(a,z) \, p_{ij}\right)^{\alpha} \pi_{ij}(a,z)\right] da \, dz. \label{eq:second-term}
+\end{align}
+
+Now we can put (\ref{eq:first-term}) and (\ref{eq:second-term}) to arrive at a statement about the trade elasticity. To provide more clarity about how things work, let's use the argument that most people purchase most stuff from home, so that $\pi_{nj}(a,z) \approx 0$ or small. Then the trade elasticity becomes
+\begin{align}
+\theta_{nj} = \alpha - \eta \cdot \int\limits_{\mathcal{A} \times \mathcal{Z}} \omega_{nj}(a,z) \, \, \left(\lambda(a,z) \, p_{nj}\right)^{\alpha} \, da \, dz.
+\end{align}
+which is pretty nice. A couple of things about this: 
+\begin{itemize}
+\item The distribution of the marginal utility of wealth is a central object in shaping this, i.e., one can see how household heterogeneity matters for aggregate responses. In contrast, and you can do this on your own, with CES preferences, household heterogeneity will not matter at all because even though households are different, they are substituting in the same way. That is not the case here.
+    
+\item Notice how trade elasticities now vary with $nj$ and this is working through (i) the price effect discussed below and (ii) expenditure patterns across households via $\omega(a,z)$.  
+    
+\item In aggregate, higher price destinations will have larger trade elasticities. This is very clear in the formulation as to how it is working. And again, it is like ``Marshalls Second Law of Demand'' in aggregate. There is some evidence on this. The key thing is that now geography is not only matters by shaping the level of trade, it will shape the response.
+\end{itemize}
+
+
+\section{The Asset Market and Balance of Payments}
+
+\section{Solving the Model}
+
+\subsection{EGM-Shopping-Cart Algorithm}
+
+My computational approach exploits the Euler equation derived above. Below, I describe my algorithm, I will present everything as if we are in a stationary environment.
+\begin{itemize}
+\item[\textbf{0.}] Set up an asset grid. Then guess (i) an \textbf{expenditure} function $e(a,z)$ for each $a$, $z$. Note that this is not the consumption function, but how much the household plans to spend in units of the numeraire.
+
+\item[\textbf{1.}] Find the $\lambda(a',z')$ that is associated with the given expenditure function $e(a',z')$. This entails solving the equation (\ref{eq:lambda-expenditure}), this is not a direct calculation but will entail some kind of numerical algorithim to solve for  $\lambda$ from equation (\ref{eq:lambda-expenditure}). Doing this fast and robustly is important. One approach would be to setup like a ``look-up table'' and interpolate off this. There is nothing about the states or dynamics that affects the relationship between $e$ and $\lambda$. Or store the old values of $\lambda$ with $e$ and interpolate off it as well.
+
+\item[\textbf{2.}] Use the Euler Equation to find the implied $\lambda(\tilde a,z)$. Then from equation (\ref{eq:lambda-expenditure}), we \textbf{directly} have $e(\tilde a,z)$. The $\tilde a$ meas that these are values associated with some asset level, not necessarily ones on the grid.
+
+\item[\textbf{3.}] A key issue in this method is that we have found  $e(\tilde a, z, j),$ where the expenditure function is associated with some asset level that is not necessarily on the grid. The solution is to use the budget constraint and infer $\tilde a$ given that $a'$, was chosen above (that's where we started), $z$, and $e(\tilde a, z)$. Now, I have a map from $\tilde a$ to $a'$ for which one can use interpolation to infer the $a'$ chosen given $a$ where $a$ is on the grid.
+
+\item[\textbf{4.}] From step \textbf{3.}, we have an asset policy function mapping $a -> a'$. Given this asset policy function, we can use the budget constraint and we have an updated expenditure function $e'(a,z)$.
+
+\item[\textbf{4.1}] How is the constraint being handled? The interpolation scheme is setup to force things to be on the grid, so if the implied $a$ is below the constraint, it just forces the household to be at $\phi$ and then expenditure comes off the budget constraint.
+
+\item[\textbf{5.}] Compare old and new expenditure functions, and then update accordingly.
+\end{itemize}
+
+\section{Gains from Trade}
+
+
+\newpage
+\clearpage
+
+\bibliography{./bibtex/micro_price_bibtex}
+
+
+
+\end{onehalfspacing}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
