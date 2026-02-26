@@ -39,7 +39,7 @@ To get to this point, I'm going to focus on the Eaton and Kortum (2002) framewor
 
 * **Tuesday 23 February**: Discuss household heterogenaity and provide an updated presentation of [HAT](https://www.waugheconomics.com/uploads/2/2/5/6/22563786/heterogeneous-agent-trade.pdf). Here are my [class notes](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/ek-meets-hat.pdf) on these issues. 
 
-* **Thursday 25 February**: Finish up household heterogenaity (elasticities, asset market, second order welfare approximation). All this is the updated notes [HAT](https://www.waugheconomics.com/uploads/2/2/5/6/22563786/heterogeneous-agent-trade.pdf). Here are Simon's [slides](https://www.waugheconomics.com/uploads/2/2/5/6/22563786/heterogeneous-agent-trade.pdf). Here are my [class notes](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/Lecture5_MongeyWaugh.pdf) on data facts and our Pricing Inequality paper. 
+* **Thursday 25 February**: Finish up household heterogenaity (elasticities, asset market, second order welfare approximation). All this is the updated notes [HAT](https://www.waugheconomics.com/uploads/2/2/5/6/22563786/heterogeneous-agent-trade.pdf). Here are Simon's [slides](https://raw.githubusercontent.com/mwaugh0328/minnesota-phd-trade-2026/main/notes/Lecture5_MongeyWaugh.pdf) on data facts and our Pricing Inequality paper. 
 
 
 
